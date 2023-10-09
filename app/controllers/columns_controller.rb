@@ -4,6 +4,12 @@ class ColumnsController < ApplicationController
   add_breadcrumb "記事一覧", :columns_path
   def index
     @columns = Column.order(created_at: "DESC").page(params[:page])
+    respond_to do |format|
+      format.html
+      format.csv do
+         send_data @columns.generate_csv, filename: "culumns-#{Time.zone.now.strftime('%Y%m%d%S')}.csv"
+      end
+     end
   end
 
   def show
@@ -36,13 +42,9 @@ class ColumnsController < ApplicationController
      redirect_to columns_path
   end
 
-  def update
-    @column = Column.find(params[:id])
-    if @column.update(column_params)
-      redirect_to columns_path
-    else
-      render 'edit'
-    end
+  def import
+    cnt = Column.import(params[:file])
+    redirect_to columns_url, notice:"#{cnt}件登録されました。"
   end
 
   private

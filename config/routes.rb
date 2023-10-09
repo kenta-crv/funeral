@@ -25,7 +25,11 @@ Rails.application.routes.draw do
     end
     
 
-    resources :columns
+    resources :columns do
+      collection do 
+        post :import
+      end
+    end
     resources :entries
 
     resources :companies do 
