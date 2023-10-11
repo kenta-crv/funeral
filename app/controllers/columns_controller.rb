@@ -42,6 +42,15 @@ class ColumnsController < ApplicationController
      redirect_to columns_path
   end
 
+  def update
+    @column = Column.find(params[:id])
+    if @column.update(column_params)
+      redirect_to columns_path
+    else
+      render 'edit'
+    end
+  end
+  
   def import
     cnt = Column.import(params[:file])
     redirect_to columns_url, notice:"#{cnt}件登録されました。"
