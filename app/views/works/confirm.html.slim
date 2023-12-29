@@ -1,0 +1,101 @@
+- set_meta_tags  title: ''
+- set_meta_tags  description: ''
+
+=  form_for @work, url: thanks_works_path(@work) do |f|
+  br
+  br
+  .tops-wrapper
+    h2.headline
+      | お見積もり確認フォーム
+  table.company.responsive-table
+      colgroup
+        col.col-1
+        col.col-2
+        col.col-3
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | お名前
+        td.responsive-cell
+         .input-container
+         = f.hidden_field :name
+         = @work.name
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 携帯番号
+        td.responsive-cell
+         .input-container
+          = f.hidden_field :tel
+          = @work.tel
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 住所
+        td.responsive-cell
+         .input-container
+          = f.hidden_field :address
+          = @work.address
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | メールアドレス
+        td.responsive-cell
+         .input-container
+          = f.hidden_field :email
+          = @work.email
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | プログラム歴
+          br
+          |
+        td.responsive-cell
+         .input-container
+         = f.hidden_field :program_histroy
+         = @work.program_histroy
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | Python歴
+        td.responsive-cell
+         .input-container
+         = f.hidden_field :program_python
+         = @work.program_python
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | その他使用可能言語
+        td.responsive-cell
+         .input-container
+         = f.hidden_field :program_other
+         = @work.program_other
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 業務最短開始日
+        td.responsive-cell
+         .input-container
+          = f.hidden_field :period
+          = @work.period
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 要望
+        td.responsive-cell
+         .input-container
+          = f.hidden_field :remarks
+          = @work.remarks
+      tr
+       td colspan="3"
+        .center
+         = f.submit "送信", class:"btn btn-primary", data: {behavior: "fb-track"}

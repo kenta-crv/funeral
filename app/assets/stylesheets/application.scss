@@ -1847,3 +1847,51 @@ table.free {
     margin: 0; 
     padding: 0;
 }
+
+
+.box30 {
+  margin-left: 10px;
+  margin-right: 10px;
+  background: #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+}
+.box30 .box-title {
+  font-size: 1.2em;
+  background: $main_color;
+  padding: 4px;
+  text-align: center;
+  color: #FFF;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+.box30 p {
+  padding: 15px 20px;
+  margin: 0;
+}
+
+
+/* 基本的なテーブルスタイリング */
+table.recruit {
+  width: 100%; /* テーブルの幅を指定 */
+  border-collapse: collapse; /* セルの境界線を合わせる */
+  font-size: 14px; /* フォントサイズ */
+}
+
+table.recruit th, table.recruit td {
+  border: 1px solid #ddd; /* 境界線のスタイル */
+  padding: 8px; /* セルのパディング */
+  text-align: left; /* テキストの配置 */
+}
+
+/* 見出し行のスタイリング */
+table.recruit th {
+  background-color: #f2f2f2; /* 背景色 */
+  color: #333; /* テキストの色 */
+  font-weight: bold; /* フォントの太さ */
+}
+
+/* 特定のセルのスタイリング */
+table.recruit td.price {
+  color: red; /* テキストの色 */
+  font-weight: bold; /* フォントの太さ */
+}

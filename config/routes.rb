@@ -23,6 +23,19 @@ Rails.application.routes.draw do
         post :apply
       end
     end
+
+    resources :works do
+      collection do
+        post :confirm
+        post :thanks
+      end
+      member do
+        get :apply
+        post :send_mail
+        get :confirm_point
+        post :apply
+      end
+    end
     
 
     resources :columns do
@@ -55,7 +68,8 @@ Rails.application.routes.draw do
       resources :totals #まとめ
     end
 
-    get 'lp' => 'tops#lp'
+    get 'freelance' => 'tops#freelance'
+    get 'recruit' => 'tops#recruit'
 
     #get '*path', controller: 'application', action: 'render_404'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

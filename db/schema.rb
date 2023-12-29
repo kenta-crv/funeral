@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_25_120620) do
+ActiveRecord::Schema.define(version: 2023_12_29_101611) do
 
   create_table "achivements", force: :cascade do |t|
     t.integer "company_id"
@@ -288,6 +288,20 @@ ActiveRecord::Schema.define(version: 2023_07_25_120620) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_totals_on_company_id"
+  end
+
+  create_table "works", force: :cascade do |t|
+    t.string "name"
+    t.string "tel"
+    t.string "address"
+    t.string "email"
+    t.string "program_histroy"
+    t.string "program_python"
+    t.string "program_other"
+    t.string "period"
+    t.string "remarks"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

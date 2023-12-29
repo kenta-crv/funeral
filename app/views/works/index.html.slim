@@ -1,0 +1,37 @@
+- set_meta_tags  title: ''
+- set_meta_tags  description: ''
+
+- set_meta_tags noindex: true
+
+.row
+  br
+  br
+  table.company
+   tr
+     th 会社名
+     th 担当者
+     th 電話番号
+     th cocacola
+     th asahi
+     th 伊藤園
+     th ダイドー
+     th Kirin
+     th メール送信
+   - @works.each do |work|
+    tr
+     td = link_to work.co, work_path(work), clsss:"store"
+     td = work.name
+     td = work.tel
+     td
+     td
+     td
+     td
+     td
+     - if work.send_mail_flag == true
+      td style="color: green" 送信済
+     - else
+      td style="color: red" 未送信
+  br
+    hr.line
+    br
+    = paginate(@works)

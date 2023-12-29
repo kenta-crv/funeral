@@ -1,0 +1,93 @@
+- if @work.errors.any?
+  strong 入力内容にエラーがあります
+  ul
+    - @work.errors.each do |attr, msg|
+      li= msg
+    br
+table.company.responsive-table
+      colgroup
+        col.col-1
+        col.col-2
+        col.col-3
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | お名前
+        td.responsive-cell
+         .input-container
+          = f.text_field :name
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 携帯番号
+        td.responsive-cell
+         .input-container
+          = f.text_field :tel
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 住所
+        td.responsive-cell
+         .input-container
+          = f.text_field :address
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | メールアドレス
+        td.responsive-cell
+         .input-container
+          = f.email_field :email
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | プログラム歴
+        td.responsive-cell
+         .input-container
+          = f.number_field :program_histroy
+          | 年
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | Python歴
+        td.responsive-cell
+         .input-container
+          = f.number_field :program_python
+          | 年
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | その他使用可能言語
+        td.responsive-cell
+         .input-container
+          = f.number_field :program_other
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 業務最短開始日
+        td.responsive-cell
+         .input-container
+          = f.select(:period,[\
+            ["すぐにでも","すぐにでも"],\
+            ["1ヶ月以内","1ヶ月以内"],\
+            ["3ヶ月以内","3ヶ月以内"],\
+            ["相談フェーズ","相談フェーズ"],\
+           ],include_blank: "選択してください")
+      tr
+        td.label-cell
+          strong.label.label-blue 任意
+        td.arrow-box-cell
+          | 要望
+        td.responsive-cell
+         .input-container
+          = f.text_area :remarks
+      tr
+        td colspan="3"
+          = f.submit "確認画面", class:"btn btn-primary"
