@@ -7,4 +7,10 @@ class TopsController < ApplicationController
 
     def recruit
     end
+
+    def python
+    end
+
+    def ai
+    end
 end

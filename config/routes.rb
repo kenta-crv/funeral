@@ -71,6 +71,9 @@ Rails.application.routes.draw do
     get 'freelance' => 'tops#freelance'
     get 'recruit' => 'tops#recruit'
 
+    get 'python' => 'tops#python'
+    get 'ai' => 'tops#ai'
+
     #get '*path', controller: 'application', action: 'render_404'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
