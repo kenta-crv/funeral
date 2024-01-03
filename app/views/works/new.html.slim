@@ -7,3 +7,13 @@
   h2.headline  お問い合わせフォーム
   =  form_for @work, url: confirm_works_path(@work) do |f|
     = render 'form', f: f, btn_name: "確認画面"
+
+
+/ Google tag (gtag.js)
+javascript:
+  async src="https://www.googletagmanager.com/gtag/js?id=AW-11463623814"
+javascript:
+  | window.dataLayer = window.dataLayer || [];
+  | function gtag(){dataLayer.push(arguments);}
+  | gtag('js', new Date());
+  | gtag('config', 'AW-11463623814');
