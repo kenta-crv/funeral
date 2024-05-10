@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_29_101611) do
+ActiveRecord::Schema.define(version: 2024_05_09_003122) do
 
   create_table "achivements", force: :cascade do |t|
     t.integer "company_id"
@@ -230,6 +230,51 @@ ActiveRecord::Schema.define(version: 2023_12_29_101611) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_introductions_on_company_id"
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string "front_of_engineer"
+    t.string "backend_of_engineer"
+    t.string "serverside_of_engineer"
+    t.string "application_of_engineer"
+    t.string "database_of_engineer"
+    t.string "security_of_engineer"
+    t.string "your_hope"
+    t.string "python"
+    t.string "python_history"
+    t.string "ruby"
+    t.string "ruby_history"
+    t.string "java"
+    t.string "java_history"
+    t.string "c_language"
+    t.string "c_language_history"
+    t.string "go"
+    t.string "go_history"
+    t.string "php"
+    t.string "php_history"
+    t.string "javascript"
+    t.string "javascript_history"
+    t.string "swift"
+    t.string "swift_history"
+    t.string "kotlin"
+    t.string "kotlin_history"
+    t.string "other_1"
+    t.string "other_1_history"
+    t.string "other_2"
+    t.string "other_2_history"
+    t.string "other_3"
+    t.string "other_3_history"
+    t.string "full_time_employee"
+    t.string "full_time_employee_remotely"
+    t.string "freelance"
+    t.string "freelance_remotely"
+    t.string "part_time"
+    t.string "part_time_remotely"
+    t.string "period"
+    t.string "line"
+    t.string "line_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "presidents", force: :cascade do |t|

@@ -1,0 +1,16 @@
+current directory: /Users/okuyamakenta/Program/engist/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+/Users/okuyamakenta/.rbenv/versions/2.6.1/bin/ruby -I /Users/okuyamakenta/.rbenv/versions/2.6.1/lib/ruby/site_ruby/2.6.0 extconf.rb
+creating Makefile
+
+current directory: /Users/okuyamakenta/Program/engist/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240510-21086-hmth6n sitelibdir\=./.gem.20240510-21086-hmth6n clean
+
+current directory: /Users/okuyamakenta/Program/engist/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240510-21086-hmth6n sitelibdir\=./.gem.20240510-21086-hmth6n
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+ld: warning: -multiply_defined is obsolete
+
+current directory: /Users/okuyamakenta/Program/engist/vendor/bundle/ruby/2.6.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240510-21086-hmth6n sitelibdir\=./.gem.20240510-21086-hmth6n install
+/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20240510-21086-hmth6n

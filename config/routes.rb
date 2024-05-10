@@ -37,6 +37,11 @@ Rails.application.routes.draw do
       end
     end
     
+    resources :jobs do
+      collection do
+        get :thanks
+      end
+    end
 
     resources :columns do
       collection do 

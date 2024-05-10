@@ -612,8 +612,7 @@
      z-index: 9;
  }
 
-
-                                             /*テーブルに関する情報*/
+/*テーブルに関する情報*/
 /*テーブル共通*/
 table.company {
   width: 90%;
@@ -623,98 +622,64 @@ table.company {
   font-size: 1.3vw;
   th, td { padding: 10px; }
   th {
-     background: $main_color;
-     vertical-align: middle;
-     text-align: left;
-     overflow: visible;
-     position: relative;
-     color: #fff;
-     font-weight: bold;
-     :after {
-        left: 100%;
-        top: 50%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-        border-color: rgba(136, 183, 213, 0);
-        border-left-color: $main_color;
-        border-width: 10px;
-        margin-top: -10px;
-        }
-     }
-
+    background: $main_color;
+    vertical-align: middle;
+    text-align: left;
+    overflow: visible;
+    position: relative;
+    color: #fff;
+    font-weight: bold;
+    :after {
+      left: 100%;
+      top: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: rgba(136, 183, 213, 0);
+      border-left-color: $main_color;
+      border-width: 10px;
+      margin-top: -10px;
+    }
+  }
   td {
-     background: #f4f4f4;
-     }
-     
+    background: #f4f4f4;
+  }
 }
 
+.table.company col.col-1, .table.company col.col-2, .table.company col.col-3 {
+  width: auto; /* 列の幅を自動調整 */
+}
 
+tr {
+  display: flex;
+}
 
+/* レスポンシブ対応 */
 @media screen and (max-width: 767px) {
- table.company {
-   width: 100%;
- }
-
- .label-cell,
- .arrow-box-cell {
-   display: inline-block;
-   font-size:21px;
-   box-sizing: border-box;
- }
-
- .company-cell{
-  background-color:$main_color;
-  display: inline-block;
-  font-size:21px;
-  width:100%;
-}
-
- .label-cell {
-  font-size:21px;
-   background-color: #f0f0f0 !important; /* 任意の背景色に変更 */
- }
-
- .responsive-cell {
-   display: block;
-   font-size:21px;
-   width: 100%;
-   background-color: #e0e0e0 !important; /* 任意の背景色に変更 */
- }
-
- .input-container {
-   display: block;
-   width: 100%;
- }
-}
-
-
-@media screen and (max-width: 767px) {
-  .label-cell,
-  .arrow-box-cell {
-    display: inline-block;
+  tr {
+    display: block;
+  }
+  table.company {
     width: 100%;
-    box-sizing: border-box;
+    font-size: 21px; /* Adjust font size for mobile screens */
   }
-
-  .label-cell {
-    background-color: #f0f0f0 !important; /* 任意の背景色に変更 */
-  }
-
+  .label-cell,
+  .arrow-box-cell,
   .responsive-cell {
     display: block;
     width: 100%;
-    background-color: #e0e0e0 !important; /* 任意の背景色に変更 */
+    background-color: #f0f0f0; /* Updated background color for clarity */
   }
-
   .input-container {
     display: block;
     width: 100%;
   }
 }
+
+
 
  /* firefox */
  @-moz-document url-prefix() {
@@ -1894,4 +1859,24 @@ table.recruit th {
 table.recruit td.price {
   color: red; /* テキストの色 */
   font-weight: bold; /* フォントの太さ */
+}
+
+
+.form-inline {
+  display: flex;
+  align-items: center;  /* 中央揃えを行います */
+}
+
+.form-control-label {
+  margin-right: 10px;  /* ラベルとチェックボックスの間に余白を設定 */
+}
+
+.form-control {
+  margin: 5px 0;  /* 余白を調整 */
+}
+
+
+
+.left-margen {
+  margin-left:25px;
 }
