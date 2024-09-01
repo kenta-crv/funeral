@@ -649,14 +649,6 @@ table.company {
   }
 }
 
-.table.company col.col-1, .table.company col.col-2, .table.company col.col-3 {
-  width: auto; /* 列の幅を自動調整 */
-}
-
-tr {
-  display: flex;
-}
-
 /* レスポンシブ対応 */
 @media screen and (max-width: 767px) {
   tr {
@@ -1722,14 +1714,18 @@ table.review {
   .font-middle{font-size:1.7rem;}
   .red{color:red;}
 
+  
+
   th, td {
     background: #f4f4f4;
     padding: 10px;
     line-height:3rem; }
-  .title{
-    background-color:$main_color;
-    font-size: 1.5vw;
-    color:white;}
+    .title {
+      background-color: $main_color !important;
+      color: white;
+      font-size: 1.5vw;
+      text-align: center;
+    }
   
   td {
      vertical-align: middle;
