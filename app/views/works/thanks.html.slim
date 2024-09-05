@@ -1,15 +1,57 @@
-br
- .tops-wrapper
-    h2.headline
-       | お問い合わせ完了しました。
-    p.center 
-     | 担当者より追ってご連絡差し上げます。よろしくお願い致します。
+.tops-wrapper
+ h2.headline
+  | 送信が完了しました。以下よりLINE追加を頂くとやり取りがスムーズになります。
+ .center 
+  = image_tag "line.webp", width: "350px";
+  br/
+  = link_to "LINEを追加する", "https://lin.ee/iTS64hj", class:"btn btn-success"
 
+.tops-wrapper
+ h2.headline
+  | 今後の流れをご確認下さい。
 
+ul.flow.center
+  li
+    dl
+      dt
+        span.icon
+          | STEP.01
+        | 電話確認
+      dd.center
+        | ご利用者様に内容確認のご連絡をさせていただいております。
+        br
+        | お手数おかけしますが、ご対応のほどよろしくお願い致します。
+        .red 
+         | ※ご不在の場合、折り返し頂けますとスムーズに折り返し頂ければ幸いです。
+  li
+    dl
+      dt
+        span.icon
+          | STEP.02
+        | 打診開始
+      dd.center
+        | ご利用者様の希望エリアに対して打診を行います。
+        br
+        | 企業様の検討状況により最短即日〜10日ほどお時間を頂きます。
+        br
+  li
+    dl
+      dt
+        span.icon
+          | STEP.03
+        | 面接開始
+      dd.center
+        | 企業様より面接希望があった場合、日程調整を行い面接を開始となります。
+        br
+        | 履歴書は企業様に直接提出して頂きます。
+  li
+    dl
+      dt
+        span.icon
+          | STEP.04
+        | 勤務開始
+      dd.center
+        | 無事採用が決まりましたら、企業様と日程調整して勤務開始となります。
 
- .center
-  = link_to "トップページへ戻る", "/", class:"btn btn-primary"
-br
-br
 
 
