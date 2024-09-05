@@ -34,20 +34,20 @@
         td.label-cell
           strong.label 必須
         td.arrow-box-cell
-          | 住所
-        td.responsive-cell
-         .input-container
-          = f.hidden_field :address
-          = @work.address
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
           | メールアドレス
         td.responsive-cell
          .input-container
           = f.hidden_field :email
           = @work.email
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 稼働希望エリア
+        td.responsive-cell
+         .input-container
+          = f.hidden_field :address
+          = @work.address
       tr
         td.label-cell
           strong.label 必須
@@ -63,20 +63,11 @@
         td.label-cell
           strong.label 必須
         td.arrow-box-cell
-          | Python歴
+          | 使用可能言語
         td.responsive-cell
          .input-container
          = f.hidden_field :program_python
          = @work.program_python
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | その他使用可能言語
-        td.responsive-cell
-         .input-container
-         = f.hidden_field :program_other
-         = @work.program_other
       tr
         td.label-cell
           strong.label 必須

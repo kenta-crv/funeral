@@ -4,13 +4,13 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   # ActionMailer::Base.delivery_method = :letter_opener_web
-  ActionMailer::Base.delivery_method = :imap
+  ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-  address: 'imap.gmoserver.jp',
+  address: 'smtp.lolipop.jp',
   domain: 'engist.jp',
   port: 587,
   user_name: 'info@engist.jp',
-  password: '6H7j_yq_2024',
+  password: 'a3t_gX_5-_Weq_m7',
   authentication: 'plain',
   enable_starttls_auto: true
   }

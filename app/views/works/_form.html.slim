@@ -29,14 +29,6 @@ table.company.responsive-table
         td.label-cell
           strong.label 必須
         td.arrow-box-cell
-          | 住所
-        td.responsive-cell
-         .input-container
-          = f.text_field :address
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
           | メールアドレス
         td.responsive-cell
          .input-container
@@ -45,28 +37,27 @@ table.company.responsive-table
         td.label-cell
           strong.label 必須
         td.arrow-box-cell
+          | 稼働希望エリア
+        td.responsive-cell
+         .input-container
+          = f.text_field :address
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
           | プログラム歴
         td.responsive-cell
          .input-container
-          = f.number_field :program_histroy
+          = f.text_field :program_histroy
           | 年
       tr
         td.label-cell
           strong.label 必須
         td.arrow-box-cell
-          | Python歴
+          | 使用可能言語
         td.responsive-cell
          .input-container
-          = f.number_field :program_python
-          | 年
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | その他使用可能言語
-        td.responsive-cell
-         .input-container
-          = f.text_field :program_other
+          = f.text_area :program_python
       tr
         td.label-cell
           strong.label 必須
@@ -77,8 +68,8 @@ table.company.responsive-table
           = f.select(:period,[\
             ["すぐにでも","すぐにでも"],\
             ["1ヶ月以内","1ヶ月以内"],\
+            ["2ヶ月以内","2ヶ月以内"],\
             ["3ヶ月以内","3ヶ月以内"],\
-            ["相談フェーズ","相談フェーズ"],\
            ],include_blank: "選択してください")
       tr
         td.label-cell
