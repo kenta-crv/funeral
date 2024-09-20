@@ -8,7 +8,12 @@ Rails.application.routes.draw do
 
     resources :admins, only: [:show]
 
-    root to: 'tops#index' #トップページ
+    root to: 'tops#recruit' #トップページ
+    get 'freelance' => 'tops#freelance'
+   #get 'recruit' => 'tops#recruit'
+
+    get 'python' => 'tops#python'
+    get 'ai' => 'tops#ai'
 
     resources :estimates do
       resource :comments
@@ -72,12 +77,6 @@ Rails.application.routes.draw do
       resources :prospects #未来図
       resources :totals #まとめ
     end
-
-    get 'freelance' => 'tops#freelance'
-    get 'recruit' => 'tops#recruit'
-
-    get 'python' => 'tops#python'
-    get 'ai' => 'tops#ai'
 
     #get '*path', controller: 'application', action: 'render_404'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
