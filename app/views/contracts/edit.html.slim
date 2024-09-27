@@ -1,0 +1,157 @@
+- set_meta_tags noindex: true
+
+.tops-wrapper
+  br
+  h2.headline  見積もり編集
+  =  form_for @contract, url: contract_path(@contract) do |f|
+   table.company.responsive-table
+      colgroup
+        col.col-1
+        col.col-2
+        col.col-3
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 会社名
+        td.responsive-cell
+         .input-container
+          = f.text_field :co, placeholder:"（例）株式会社Ri-Plus"
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | ご担当者様名
+        td.responsive-cell
+         .input-container
+           = f.text_field :person_first, class:"harf"
+           = f.text_field :person_last, class:"harf"
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 電話番号
+        td.responsive-cell
+         .input-container
+          = f.text_field :tel, placeholder:"（例）080-0000-0000"
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 所在地
+        td.responsive-cell
+         .input-container
+          = f.text_field :address, placeholder:"（例）東京都中央区銀座1-22-11 2F"
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | メールアドレス
+        td.responsive-cell
+         .input-container
+          = f.email_field :email, placeholder:"（例）abc@def.jp"
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 採用したい職種
+        td.responsive-cell
+         .input-container
+          = f.text_field :work
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 採用したい人数
+        td.responsive-cell
+         .input-container
+          = f.text_field :number  
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 発注予定時期
+        td.responsive-cell
+         .input-container
+          = f.select(:period,[\
+            ["すぐにでも","すぐにでも"],\
+            ["1ヶ月以内","1ヶ月以内"],\
+            ["3ヶ月以内","3ヶ月以内"],\
+            ["6ヶ月以内","6ヶ月以内"],\
+           ],include_blank: "選択してください")
+      tr
+        td.label-cell
+          strong.label.label-blue 任意
+        td.arrow-box-cell
+          | 備考・要望
+        td.responsive-cell
+         .input-container
+          = f.text_area :remarks, placeholder:"（例）お問い合わせ内容"
+      tr
+        td
+          strong.label 必須
+        td
+          |代表者名
+        td
+          = f.text_field :president_first
+          = f.text_field :president_last
+      tr
+        td
+          strong.label 必須
+        td
+          |代表者役職
+        td
+          = f.text_field :post_title
+      tr
+        td
+          strong.label 必須
+        td
+          |採用ページURL
+        td
+          = f.text_field :recruit_url
+      tr
+        td
+          strong.label 必須
+        td
+          |採用ページURL2
+        td
+          = f.text_field :recruit_url_2
+      - if admin_signed_in?
+       table.company
+        colgroup
+           col.col-1
+           col.col-2
+           col.col-3
+        tr
+         td
+           strong.label 必須
+         td
+           |成果報酬
+         td
+           = f.text_field :unit_price, placeholder:"（例）２０%"
+        tr
+         td
+           strong.label 必須
+         td
+           |返戻条件
+         td
+           = f.text_field :refund, placeholder:"（例）１ヶ月以内５０％・１ヶ月以上２ヶ月以内３０％"
+      - else
+        tr
+         td
+           strong.label 必須
+         td
+           |成果報酬
+         td
+           = @contract.unit_price
+        tr
+         td
+           strong.label 必須
+         td
+           |返戻条件
+         td
+           = @contract.refund
+      tr
+        td colspan="3"
+          = f.submit "登録する", class:"btn btn-primary"
+     

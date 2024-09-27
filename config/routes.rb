@@ -41,6 +41,19 @@ Rails.application.routes.draw do
         post :apply
       end
     end
+
+    resources :contracts do
+      resource :comments
+      collection do
+        post :confirm
+        post :thanks
+      end
+      member do
+        post :send_mail
+        get "info"
+        get "conclusion"
+      end
+    end
     
     resources :jobs do
       collection do

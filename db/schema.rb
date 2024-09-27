@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_05_09_003122) do
+ActiveRecord::Schema.define(version: 2024_09_27_111458) do
 
   create_table "achivements", force: :cascade do |t|
     t.integer "company_id"
@@ -129,6 +129,16 @@ ActiveRecord::Schema.define(version: 2024_05_09_003122) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.integer "contract_id", null: false
+    t.string "status"
+    t.datetime "next"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contract_id"], name: "index_comments_on_contract_id"
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "co"
     t.string "rogo"
@@ -149,6 +159,36 @@ ActiveRecord::Schema.define(version: 2024_05_09_003122) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "contact"
+  end
+
+  create_table "contracts", force: :cascade do |t|
+    t.string "agree"
+    t.string "co"
+    t.string "president_first"
+    t.string "president_last"
+    t.string "tel"
+    t.string "address"
+    t.string "url"
+    t.string "recruit_url"
+    t.string "work"
+    t.string "plan"
+    t.string "number"
+    t.string "period"
+    t.string "remarks"
+    t.string "person_first"
+    t.string "person_last"
+    t.string "person_tel"
+    t.string "email"
+    t.string "memo"
+    t.string "person_email"
+    t.string "recruit_url_2"
+    t.string "pdf"
+    t.string "post_title"
+    t.string "contract_date"
+    t.string "unit_price"
+    t.string "refund"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cultures", force: :cascade do |t|
