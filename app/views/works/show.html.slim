@@ -161,7 +161,7 @@
           | 職務経歴書
         td.responsive-cell
          .input-container
-          = @work.histroy
+          = simple_format(@work.histroy) 
       tr
         td.label-cell
           strong.label 必須
