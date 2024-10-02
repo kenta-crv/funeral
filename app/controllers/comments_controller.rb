@@ -9,8 +9,7 @@ class CommentsController < ApplicationController
       else
         render :new
       end
-    end
-    
+    end    
   
     def edit
       @contract = Contract.find(params[:contract_id])

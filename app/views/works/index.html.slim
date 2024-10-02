@@ -8,29 +8,24 @@
   br
   table.company
    tr
-     th 会社名
-     th 担当者
-     th 電話番号
-     th cocacola
-     th asahi
-     th 伊藤園
-     th ダイドー
-     th Kirin
-     th メール送信
+     th 年齢
+     th 言語
+     th プログラマー歴
+     th 国籍
+     th エンジニアレベル
+     th 日本語レベル
+     th 稼働希望日
+     th 詳細
    - @works.each do |work|
     tr
-     td = link_to work.co, work_path(work), clsss:"store"
-     td = work.name
-     td = work.tel
-     td
-     td
-     td
-     td
-     td
-     - if work.send_mail_flag == true
-      td style="color: green" 送信済
-     - else
-      td style="color: red" 未送信
+     td = work.age
+     td = work.program_python
+     td = work.program_histroy
+     td = work.nationality
+     td = work.engineer_level
+     td = work.japanese_level
+     td = work.period
+     td = link_to "詳細へ進む", work_path(work), clsss:"store"
   br
     hr.line
     br

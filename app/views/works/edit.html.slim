@@ -3,26 +3,118 @@
 .tops-wrapper
   h2.headline  見積もり編集
   =  form_for @work, url: work_path(@work) do |f|
-   table.company
+   table.company.responsive-table
     colgroup
-      col width="10%"
-      col width="20%"
-      col width="70%"
+        col.col-1
+        col.col-2
+        col.col-3
     tr
-     td
-      strong.label 必須
-     td
-       |担当者の一言
-     td
-      = f.text_area :word
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 性別
+      td.responsive-cell
+       .input-container
+        = f.select(:gender,[\
+          ["男","男"],\
+          ["女","女"],\
+          ["その他","その他"],\
+         ],include_blank: "選択してください")
     tr
-     td
-      strong.label.label-blue 任意
-     td
-       |送信フラグ変更
-     td
-      = f.select(:send_mail_flag, [\
-      ["送信済","true"],\
-      ["未送信","false"]\
-      ])
-     = render 'form', f: f, btn_name: "更新する"
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 年齢
+      td.responsive-cell
+       .input-container
+        = f.text_field :age
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 学歴
+      td.responsive-cell
+       .input-container
+        = f.text_field :education
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 現在のお仕事
+      td.responsive-cell
+       .input-container
+        = f.text_field :work_now
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 国籍
+      td.responsive-cell
+       .input-container
+        = f.text_field :nationality
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | VISA種類
+      td.responsive-cell
+       .input-container
+        = f.text_field :visa
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 日本語レベル
+      td.responsive-cell
+       .input-container
+        = f.select(:japanese_level,[\
+          ["カタコト","カタコト"],\
+          ["業務可能","業務可能"],\
+          ["日常会話","日常会話"],\
+          ["日本人同等","日本人同等"],\
+         ],include_blank: "選択してください")
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | エンジニアレベル
+      td.responsive-cell
+       .input-container
+        = f.select(:engineer_level,[\
+          ["独学","独学"],\
+          ["経験者","経験者"],\
+          ["即戦力","即戦力"],\
+         ],include_blank: "選択してください")
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | その他希望
+      td.responsive-cell
+       .input-container
+        = f.text_area :hope
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 職務経歴書
+      td.responsive-cell
+       .input-container
+        = f.text_area :histroy
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 成功報酬条件
+      td.responsive-cell
+       .input-container
+        = f.text_field :conversion
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 推薦
+      td.responsive-cell
+       .input-container
+        = f.text_area :recommendation
+   = render 'form', f: f, btn_name: "更新する"   

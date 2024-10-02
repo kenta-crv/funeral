@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_27_111458) do
+ActiveRecord::Schema.define(version: 2024_10_02_051602) do
 
   create_table "achivements", force: :cascade do |t|
     t.integer "company_id"
@@ -387,6 +387,19 @@ ActiveRecord::Schema.define(version: 2024_09_27_111458) do
     t.string "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "comment"
+    t.string "gender"
+    t.string "age"
+    t.string "education"
+    t.string "histroy"
+    t.string "work_now"
+    t.string "engineer_level"
+    t.string "nationality"
+    t.string "japanese_level"
+    t.string "conversion"
+    t.string "visa"
+    t.string "hope"
+    t.string "recommendation"
   end
 
 end

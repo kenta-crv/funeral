@@ -1,119 +1,198 @@
 - set_meta_tags noindex: true
 .center
 .tops-wrapper
-br
  h2.headline  基本情報
  table.company
-       colgroup
+      colgroup
          col width="10%"
          col width="20%"
          col width="70%"
-       tr
-         td
-           strong.label 必須
-         td.arrow_box
-           | 会社名
-         td
-           = @work.co
-       tr
-         td
-           strong.label 必須
-         td.arrow_box
-           | 担当者名
-         td
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | お名前
+        td.responsive-cell
+         .input-container
+          -if admin_signed_in?
            = @work.name
-       tr
-         td
-           strong.label 必須
-         td.arrow_box
-           | 電話番号
-         td
+          -else
+           | 非公開
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 携帯番号
+        td.responsive-cell
+         .input-container
+          -if admin_signed_in?
            = @work.tel
-       tr
-         td
-           strong.label 必須
-         td.arrow_box
-           | 郵便番号
-         td
-           = @work.postnumber
-       tr
-         td
-           strong.label 必須
-         td.arrow_box
-           | 設置先住所
-         td
-           = @work.address
-       tr
-         td
-           strong.label 必須
-         td.arrow_box
-           | メールアドレス
-         td
+          -else
+           | 非公開
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | メールアドレス
+        td.responsive-cell
+         .input-container
+          -if admin_signed_in?
            = @work.email
-       tr
-         td
-           strong.label.label-blue 任意
-         td.arrow_box
-           | 設置箇所
-           br
-           |（※ex.屋内・駐車場等）
-         td
-           = @work.installation
-       tr
-         td
-           strong.label.label-blue 任意
-         td.arrow_box
-           | 想定される利用人数
-           br
-           |(※屋内の場合)
-         td
-          = @work.people
-       tr
-         td
-           strong.label 必須
-         td.arrow_box
-           | 自販機について
-         td
-           = @work.chenge
-       tr
-         td
-           strong.label.label-blue 必須
-         td.arrow_box
-           | 交換前自販機会社
-           br
-           |（※交換・追加の場合）
-         td
-           = @work.change_before
-       tr
-         td
-           strong.label 必須
-         td.arrow_box
-           | 設置希望時期
-         td
-           = @work.period
-       tr
-         td
-           strong.label.label-blue 任意
-         td.arrow_box
-           | 要望
-         td
-           = @work.remarks
+          -else
+           | 非公開
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | お住まい
+        td.responsive-cell
+         .input-container
+          = @work.address
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | プログラム歴
+        td.responsive-cell
+         .input-container
+          = @work.program_histroy
+          | 年
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 使用可能言語
+        td.responsive-cell
+         .input-container
+          = @work.program_python
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 業務最短開始日
+        td.responsive-cell
+         .input-container
+          = @work.period
+      tr
+        td.label-cell
+          strong.label.label-blue 任意
+        td.arrow-box-cell
+          | 要望
+        td.responsive-cell
+         .input-container
+          = @work.remarks
+
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 性別
+        td.responsive-cell
+         .input-container
+          = @work.gender
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 年齢
+        td.responsive-cell
+         .input-container
+          = @work.age
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 学歴
+        td.responsive-cell
+         .input-container
+          = @work.education
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 現在のお仕事
+        td.responsive-cell
+         .input-container
+          = @work.work_now
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 国籍
+        td.responsive-cell
+         .input-container
+          = @work.nationality
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | VISA種類
+        td.responsive-cell
+         .input-container
+          = @work.visa
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 日本語レベル
+        td.responsive-cell
+         .input-container
+          = @work.japanese_level
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | エンジニアレベル
+        td.responsive-cell
+         .input-container
+          = @work.engineer_level
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | その他希望
+        td.responsive-cell
+         .input-container
+          = @work.hope
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 職務経歴書
+        td.responsive-cell
+         .input-container
+          = @work.histroy
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 成功報酬条件
+        td.responsive-cell
+         .input-container
+          = @work.conversion
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 推薦
+        td.responsive-cell
+         .input-container
+          = @work.recommendation
+
 .actions_container style="text-align: center; margin-bottom: 30px;"
   = link_to "編集する", edit_work_path(@work), class: "btn btn-danger"
   - if @work.blank?
     = link_to "削除する", work_path(@work), class: "btn btn-secondary", method: :delete, data: { confirm: '本当に削除しますか？' }, style: "margin-left: 10px;"
   - else
     = link_to "削除する", "javascript:void(0)", class: "btn btn-secondary", data: { confirm: 'やりとりが始まっているので削除できません' }, style: "margin-left: 10px;"
-  - if !@work.send_mail_flag
+  /- if !@work.send_mail_flag
     = link_to "送信する", send_mail_work_path(@work), class: "btn btn-primary", method: :post, data: { confirm: '登録中の全企業に送信します。よろしいですか？' }, style: "margin-left: 10px;"
-  - else
+  /- else
     = link_to "送信済", "javascript:void(0)", class: "btn btn-primary", style: "margin-left: 10px;"
-.back_link_container style='margin: 0 0 50px 40px;'
-  hr
   = link_to "一覧に戻る", works_path
 
-= form_for([@work, @work.comment]) do |f|
- table.company[width="100%"]
+/= form_for([@work, @work.comment]) do |f|
+ /table.company[width="100%"]
     col[width="20%"]
     col[width="20%"]
     col[width="20%"]
@@ -146,7 +225,7 @@ br
         th[colspan="5"]
          .center
           = f.submit
- table.company[width="100%"]
+ /table.company[width="100%"]
   /- if @work.comment.any?
     tbody
      tr
