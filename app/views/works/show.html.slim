@@ -108,6 +108,14 @@
           = @work.education
       tr
         td.label-cell
+         strong.label 必須
+        td.arrow-box-cell
+         | 資格
+        td.responsive-cell
+        .input-container
+         = @work.qualification
+      tr
+        td.label-cell
           strong.label 必須
         td.arrow-box-cell
           | 現在のお仕事
@@ -160,8 +168,16 @@
         td.arrow-box-cell
           | 職務経歴書
         td.responsive-cell
+         .input-container style="white-space: pre-wrap;"
+          = @work.histroy
+      tr 
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 自己PR
+        td.responsive-cell
          .input-container
-          = simple_format(@work.histroy) 
+          = @work.pr 
       tr
         td.label-cell
           strong.label 必須
@@ -178,6 +194,21 @@
         td.responsive-cell
          .input-container
           = @work.recommendation
+      - if admin_signed_in?
+       tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | 履歴書
+        td.responsive-cell
+         .input-container
+           - if @work.image.present?
+            - if @work.image.content_type.start_with?('image')
+              = image_tag @work.image.url
+            - if @work.image.content_type == 'application/pdf'
+              = link_to "PDFを表示", @work.image.url, target: "_blank", class:"btn btn-primary"
+              = link_to "ダウンロード", @work.image.url, download: true, class:"btn btn-primary"
+            - else
 
 .actions_container style="text-align: center; margin-bottom: 30px;"
   = link_to "編集する", edit_work_path(@work), class: "btn btn-danger"

@@ -40,6 +40,14 @@
       td.label-cell
         strong.label 必須
       td.arrow-box-cell
+        | 資格
+      td.responsive-cell
+       .input-container
+        = f.text_field :qualification
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
         | 現在のお仕事
       td.responsive-cell
        .input-container
@@ -105,6 +113,14 @@
       td.label-cell
         strong.label 必須
       td.arrow-box-cell
+        | 自己PR
+      td.responsive-cell
+       .input-container
+        = f.text_area :pr    
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
         | 成功報酬条件
       td.responsive-cell
        .input-container
@@ -117,4 +133,12 @@
       td.responsive-cell
        .input-container
         = f.text_area :recommendation
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 履歴書
+      td.responsive-cell
+       .input-container
+        = f.file_field :image
    = render 'form', f: f, btn_name: "更新する"   

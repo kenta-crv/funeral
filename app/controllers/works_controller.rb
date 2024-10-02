@@ -86,7 +86,9 @@ class WorksController < ApplicationController
         :visa, #what king of visa
         :hope, #その他希望
         :recommendation, #推薦
-
+        :pr,
+        :qualification,
+        :image,
       )
     end
   end

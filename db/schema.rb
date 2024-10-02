@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_02_051602) do
+ActiveRecord::Schema.define(version: 2024_10_02_103210) do
 
   create_table "achivements", force: :cascade do |t|
     t.integer "company_id"
@@ -400,6 +400,9 @@ ActiveRecord::Schema.define(version: 2024_10_02_051602) do
     t.string "visa"
     t.string "hope"
     t.string "recommendation"
+    t.string "pr"
+    t.string "qualification"
+    t.string "image"
   end
 
 end
