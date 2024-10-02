@@ -32,8 +32,7 @@ class WorksController < ApplicationController
     end
   
     def show
-      @work = Work.find_by(params[:id])
-  
+      @work = Work.find(params[:id])
       @comment = Comment.new
     end
   
