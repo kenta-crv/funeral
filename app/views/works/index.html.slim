@@ -25,7 +25,11 @@
      td = work.engineer_level
      td = work.japanese_level
      td = work.period
-     td = link_to "詳細へ進む", work_path(work), clsss:"store"
+     td 
+      - if admin_signed_in?
+       = link_to work.name, work_path(work), clsss:"store"
+      - else
+       = link_to "詳細へ進む", work_path(work), clsss:"store"
   br
     hr.line
     br
