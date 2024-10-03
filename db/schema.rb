@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_02_103210) do
+ActiveRecord::Schema.define(version: 2024_10_03_051450) do
 
   create_table "achivements", force: :cascade do |t|
     t.integer "company_id"
@@ -334,6 +334,16 @@ ActiveRecord::Schema.define(version: 2024_10_02_103210) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_pressreleases_on_company_id"
+  end
+
+  create_table "progresses", force: :cascade do |t|
+    t.integer "work_id", null: false
+    t.string "status"
+    t.datetime "next"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["work_id"], name: "index_progresses_on_work_id"
   end
 
   create_table "prospects", force: :cascade do |t|
