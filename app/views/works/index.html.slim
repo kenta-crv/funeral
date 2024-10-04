@@ -29,10 +29,22 @@
     tr
      td = work.age
      td = work.program_python
-     td = work.program_histroy
+     td 
+          - if work.program_histroy.to_i >= 3
+            strong style="color: red;" = work.program_histroy
+          - else
+            = work.program_histroy
      td = work.nationality
-     td = work.engineer_level
-     td = work.japanese_level
+     td           
+          - if work.engineer_level == '即戦力'
+            strong style="color: blue;" = work.engineer_level
+          - else
+            = work.engineer_level
+     td 
+          - if ['日常会話', '日本人同等'].include?(work.japanese_level)
+            strong style="color: green;" = work.japanese_level
+          - else
+            = work.japanese_level
      td = work.period
      td 
       - if admin_signed_in?
