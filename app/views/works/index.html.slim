@@ -36,7 +36,7 @@
             = work.program_histroy
      td = work.nationality
      td           
-          - if work.engineer_level == '即戦力'
+          - if ['即戦力', '経験者'].include?(work.engineer_level)
             strong style="color: blue;" = work.engineer_level
           - else
             = work.engineer_level
