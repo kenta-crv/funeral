@@ -34,20 +34,20 @@ class ContractMailer < ActionMailer::Base
 
   def received_first_email(contract)
     @contract = contract
-    @contract_url = "https://sale-s.pro/contracts/#{contract.id}"
-    mail(to: "okuyama@sale-s.pro", subject: "【#{@contract.co}】契約発行通知")
+    @contract_url = "https://engist.jp/contracts/#{contract.id}"
+    mail(to: "info@engist.jp", subject: "【#{@contract.co}】契約発行通知")
   end
 
   def send_first_email(contract)
     @contract = contract
-    @contract_url = "https://sale-s.pro/contracts/#{contract.id}"
+    @contract_url = "https://engist.jp/contracts/#{contract.id}"
     mail(from:"info@engist.jp", to: @contract.email, subject: "契約締結のご案内")
   end
 
   def new_comment_notification(comment)
     @comment = comment
     @contract = comment.contract
-    @contract_url = "https://sale-s.pro/contracts/#{@contract.id}"
+    @contract_url = "https://engist.jp/contracts/#{@contract.id}"
     mail to: "reply@ri-plus.jp"
     mail(subject: "#{@contract.co}のステータスが#{@comment.status}に更新されました") do |format|
       format.text
