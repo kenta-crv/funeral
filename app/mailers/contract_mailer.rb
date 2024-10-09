@@ -1,8 +1,8 @@
 class ContractMailer < ActionMailer::Base
-  default from: "info@sale-s.pro"
+  default from: "info@engist.jp"
   def received_email(contract)
     @contract = contract
-    mail to: "info@sale-s.pro"
+    mail to: "info@engist.jp"
     mail(subject: 'エンジニア転職の『ENGIST』にお問い合わせがありました') do |format|
       format.text
     end
@@ -18,7 +18,7 @@ class ContractMailer < ActionMailer::Base
 
   def contract_received_email(contract)
     @contract = contract
-    mail to: "info@sale-s.pro"
+    mail to: "info@engist.jp"
     mail(subject: 'エンジニア転職の『ENGIST』約款へ同意いただきありがとうございました。') do |format|
       format.text
     end
@@ -41,7 +41,7 @@ class ContractMailer < ActionMailer::Base
   def send_first_email(contract)
     @contract = contract
     @contract_url = "https://sale-s.pro/contracts/#{contract.id}"
-    mail(from:"info@sale-s.pro", to: @contract.email, subject: "契約締結のご案内")
+    mail(from:"info@engist.jp", to: @contract.email, subject: "契約締結のご案内")
   end
 
   def new_comment_notification(comment)

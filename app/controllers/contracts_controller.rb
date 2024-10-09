@@ -70,7 +70,7 @@ class ContractsController < ApplicationController
               # メール送信処理
               ContractMailer.contract_received_email(@contract).deliver_now
               ContractMailer.contract_send_email(@contract).deliver_now
-              flash[:notice] = "契約が完了しました"
+              flash[:notice] = "契約が完了しました。メールにて控えをお送りしております。"
               redirect_to info_contract_path(@contract)
             # edit.html.slimからの送信、またはconclusion.html.slimからの送信でも同意が得られなかった場合
           else

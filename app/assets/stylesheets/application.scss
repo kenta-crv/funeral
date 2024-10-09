@@ -1876,3 +1876,31 @@ table.recruit td.price {
 .left-margen {
   margin-left:25px;
 }
+
+.contract {
+  .text{
+    text-align:left;
+    padding:0 40px;
+  }
+}
+
+.organize {
+  text-align:left;
+  margin:15px 0 ;
+
+  a {
+    text-decoration: none;
+    color:white;
+    text-shadow: 1px 1px 1px #000;
+    margin-top:auto;
+    margin-top:8px;
+    a:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+}
+}
+.notice,.alert {
+  font-weight: bold;
+  z-index: 1000;
+  color: white !important;
+}
