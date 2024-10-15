@@ -1,0 +1,21 @@
+h1 編集進捗
+
+= form_for [@work, @progress] do |f|
+  div
+    = f.label :status
+    = f.select :status, [\
+      ["不在", "不在"],\
+      ["選定中", "選定中"],\
+      ["紹介中", "紹介中"],\
+      ["契約", "契約"],\
+      ["取引NG", "取引NG"],\
+      ["NG", "NG"]\
+    ], include_blank: "選択してください"
+  div
+    = f.label :next
+    = f.datetime_field :next
+  div
+    = f.label :body
+    = f.text_area :body
+  div
+    = f.submit "更新", class: "btn btn-primary"

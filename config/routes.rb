@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     end
 
     resources :works do
-      resource :progresses
+      resources :progresses
       collection do
         post :confirm
         post :thanks

@@ -107,6 +107,11 @@ class ContractsController < ApplicationController
           :contract_date,
           :unit_price,
           :refund, 
+          :payment, #支払日
+          :salary, #給与
+          :employment_conditions, #採用条件
+          :document_screening, #書類選考期間
+          :conversion, #採択率
         )
       end
   end

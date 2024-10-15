@@ -2,7 +2,7 @@ class WorksController < ApplicationController
     before_action :authenticate_admin!, only: [ :edit, :update, :destroy, :send_mail]
   
     def index
-      @works = Work.order(created_at: "DESC").page(params[:page])
+      @works = Work.without_ng_status.order(created_at: :desc).page(params[:page])
     end
   
     def new
@@ -33,7 +33,8 @@ class WorksController < ApplicationController
   
     def show
       @work = Work.find(params[:id])
-      @progress = Progress.new
+      @progress = Progress.new # この行を削除
+      @progresses = @work.progresses # すべてのprogressを取得する
     end
   
     def edit

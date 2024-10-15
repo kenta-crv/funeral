@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_03_051450) do
+ActiveRecord::Schema.define(version: 2024_10_15_060520) do
 
   create_table "achivements", force: :cascade do |t|
     t.integer "company_id"
@@ -189,6 +189,11 @@ ActiveRecord::Schema.define(version: 2024_10_03_051450) do
     t.string "refund"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "payment"
+    t.string "salary"
+    t.string "employment_conditions"
+    t.string "document_screening"
+    t.string "conversion"
   end
 
   create_table "cultures", force: :cascade do |t|

@@ -86,7 +86,7 @@
           | 備考・要望
         td.responsive-cell
          .input-container
-          = f.text_area :remarks, placeholder:"（例）お問い合わせ内容"
+          = f.text_area :remarks, placeholder:"（例）お問い合わせ内容", rows: 10
       tr
         td
           strong.label 必須
@@ -128,14 +128,49 @@
          td
            |成果報酬
          td
-           = f.text_field :unit_price, placeholder:"（例）２０%"
+           = f.text_field :unit_price, value:"２０%"
         tr
          td
            strong.label 必須
          td
            |返戻条件
          td
-           = f.text_field :refund, placeholder:"（例）１ヶ月以内５０％・１ヶ月以上２ヶ月以内３０％"
+           = f.text_field :refund, value:"１ヶ月以内５０％・１ヶ月以上２ヶ月以内３０％"
+        tr
+         td
+           strong.label 必須
+         td
+           |支払日
+         td
+           = f.text_field :payment, value:"月末締めの翌月末"
+        tr
+         td
+           strong.label 必須
+         td
+           |給与
+         td
+           = f.text_area :salary, rows: 5
+        tr
+         td
+           strong.label 必須
+         td
+           |採用条件
+         td
+           = f.text_area :employment_conditions, rows: 5
+        tr
+         td
+           strong.label 必須
+         td
+           |書類選考期間
+         td
+           = f.text_area :document_screening, rows: 5
+        tr
+         td
+           strong.label 必須
+         td
+           |採用率
+         td
+           = f.text_area :conversion, rows: 5
       - else
         tr
          td

@@ -229,43 +229,44 @@
     col[width="25%"]
     tbody
       tr
-          th
-            | ステータス
-          th
-            | 次回営業日
-          th
-            | コメント
+        th
+          | ステータス
+        th
+          | 次回営業日
+        th
+          | コメント
 
       tr
-          td
-            = f.select(:status, [\
-            ["不在","不在"],\
-            ["選定中","選定中"],\
-            ["紹介中","紹介中"],\
-            ["契約","契約"],\
-            ["取引NG","取引NG"],\
-            ["NG","NG"]],include_blank: "選択してください")     
-          td
-            = f.datetime_field :next
-          td
-            = f.text_area :body
+        td
+          = f.select(:status, [\
+          ["不在","不在"],\
+          ["選定中","選定中"],\
+          ["紹介中","紹介中"],\
+          ["契約","契約"],\
+          ["取引NG","取引NG"],\
+          ["NG","NG"]], include_blank: "選択してください")
+        td
+          = f.datetime_local_field :next
+        td
+          = f.text_area :body
       tr
         th[colspan="3"]
          .center
           = f.submit "登録する", class:"btn btn-primary"
- small 商談ステータスを入れる場合は商談日を入力。　不在の場合、ステータスは以前のステータスにし、不在にチェックを入れる
+
  table.company[width="100%"]
   - if @work.progresses.any?
     tbody
-     - @work.progresses.each do |progress|
-       tr
-        td
-          = progress.status
-        td
-          = progress.next
-        td
-          = progress.body
-        td
-          = link_to "編集", edit_work_progresses_path(@work, progress), _blank: "target"
-        /td
-          = link_to "削除", work_progress_path(@work.id, progress.id), method: :delete, data: { confirm: "本当に削除しますか？" }
+      - @work.progresses.each do |progress|
+        tr
+          td
+            = progress.status
+          td
+            = progress.next
+          td
+            = progress.body
+          - if progress.id.present?
+            td
+              = link_to '編集', edit_work_progress_path(@work, progress)
+            td
+              = link_to '削除', work_progress_path(@work, progress), method: :delete, data: { confirm: '本当に削除しますか？' }

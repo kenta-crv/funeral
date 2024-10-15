@@ -138,6 +138,44 @@
            |返戻金条件
          td
            = @contract.refund
+       tr
+         td
+           strong.label 必須
+         td
+           |支払日
+         td
+           = @contract.payment
+
+       - if admin_signed_in?
+        tr
+         td
+           strong.label 必須
+         td
+           |給与
+         td
+           = @contract.salary
+        tr
+         td
+           strong.label 必須
+         td
+           |採用条件
+         td
+           = @contract.employment_conditions
+        tr
+         td
+           strong.label 必須
+         td
+           |書類選考期間
+         td
+           = @contract.document_screening
+        tr
+         td
+           strong.label 必須
+         td
+           |採用率
+         td
+           = @contract.conversion
+
 
 .actions_container style="text-align: center; margin-bottom: 30px;"
   = link_to "契約へ進む", info_contract_path(@contract), class: "btn btn-primary"
