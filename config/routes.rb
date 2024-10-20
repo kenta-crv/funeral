@@ -8,11 +8,12 @@ Rails.application.routes.draw do
 
     resources :admins, only: [:show]
 
-    root to: 'tops#recruit' #トップページ
+    root to: 'tops#index' #トップページ
     get 'freelance' => 'tops#freelance'
    #get 'recruit' => 'tops#recruit'
 
     get 'python' => 'tops#python'
+    get 'recruit' => 'tops#recruit'
     get 'ai' => 'tops#ai'
 
     resources :estimates do
