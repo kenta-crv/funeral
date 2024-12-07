@@ -13,3 +13,21 @@
 //= require rails-ujs
 //= require_tree .
 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-clipboard]').forEach(button => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        const text = button.dataset.clipboard;
+        navigator.clipboard.writeText(text)
+          .then(() => {
+            alert('メールアドレスがコピーされました: ' + text);
+          })
+          .catch(err => {
+            console.error('コピーに失敗しました:', err);
+          });
+      });
+    });
+  });
+  

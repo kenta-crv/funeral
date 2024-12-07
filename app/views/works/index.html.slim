@@ -48,9 +48,9 @@
      td = work.period
      td 
       - if admin_signed_in?
-       = link_to work.name, work_path(work), clsss:"store"
+       = link_to work.name, work_path(work), clsss:"store", target: "_blank"
       - else
-       = link_to "詳細へ進む", work_path(work), clsss:"store"
+       = link_to "詳細へ進む", work_path(work), clsss:"store", target: "_blank"
   br
     hr.line
     br

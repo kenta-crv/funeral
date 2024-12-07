@@ -3,6 +3,6 @@
 
 .tops-wrapper
   h2.headline
-      | ご依頼フォーム
-  =  form_for @contract, url: confirm_contracts_path(@contract) do |f|
-    = render 'form', f: f, btn_name: "確認画面"
+      | 企業内容登録
+  = form_for @contract do |f|
+    = render 'form', f: f, btn_name: "送信"

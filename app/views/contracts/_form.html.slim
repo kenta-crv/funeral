@@ -4,7 +4,8 @@
     - @contract.errors.each do |attr, msg|
       li= msg
     br
-table.company.responsive-table
+= form_for @contract do |f|
+   table.company.responsive-table
       colgroup
         col.col-1
         col.col-2
@@ -16,7 +17,7 @@ table.company.responsive-table
           | 会社名
         td.responsive-cell
          .input-container
-          = f.text_field :co, placeholder:"株式会社Ri-Plus"
+          = f.text_field :co, placeholder:"（例）株式会社Ri-Plus"
       tr
         td.label-cell
           strong.label 必須
@@ -24,8 +25,8 @@ table.company.responsive-table
           | ご担当者様名
         td.responsive-cell
          .input-container
-           = f.text_field :person_first, class:"harf", placeholder:"山田"
-           = f.text_field :person_last, class:"harf", placeholder:"太郎"
+           = f.text_field :person_first, class:"harf"
+           = f.text_field :person_last, class:"harf"
       tr
         td.label-cell
           strong.label 必須
@@ -33,7 +34,7 @@ table.company.responsive-table
           | 電話番号
         td.responsive-cell
          .input-container
-          = f.text_field :tel, placeholder:"080-0000-0000"
+          = f.text_field :tel, placeholder:"（例）080-0000-0000"
       tr
         td.label-cell
           strong.label 必須
@@ -41,7 +42,7 @@ table.company.responsive-table
           | 所在地
         td.responsive-cell
          .input-container
-          = f.text_field :address, placeholder:"東京都中央区銀座1-22-11 2F"
+          = f.text_field :address, placeholder:"（例）東京都中央区銀座1-22-11 2F"
       tr
         td.label-cell
           strong.label 必須
@@ -49,43 +50,150 @@ table.company.responsive-table
           | メールアドレス
         td.responsive-cell
          .input-container
-          = f.email_field :email, placeholder:"abc@def.jp"
+          = f.email_field :email, placeholder:"（例）abc@def.jp"
       tr
-        td.label-cell
+        td
           strong.label 必須
-        td.arrow-box-cell
-          | 採用したい職種
-        td.responsive-cell
-         .input-container
-          = f.text_field :work, placeholder:"事務員"
+        td
+          |代表者名
+        td
+          = f.text_field :president_first
+          = f.text_field :president_last
       tr
-        td.label-cell
+        td
           strong.label 必須
-        td.arrow-box-cell
-          | 採用したい人数
-        td.responsive-cell
-         .input-container
-          = f.text_field :number, placeholder:"2名"
+        td
+          |代表者役職
+        td
+          = f.text_field :post_title
       tr
-        td.label-cell
+        td
           strong.label 必須
-        td.arrow-box-cell
-          | 発注予定時期
-        td.responsive-cell
-         .input-container
-          = f.select(:period,[\
-            ["すぐにでも","すぐにでも"],\
-            ["1ヶ月以内","1ヶ月以内"],\
-            ["3ヶ月以内","3ヶ月以内"],\
-           ],include_blank: "選択してください")
+        td
+          |採用ページURL
+        td
+          = f.text_field :recruit_url
       tr
-        td.label-cell
-          strong.label.label-blue 任意
-        td.arrow-box-cell
-          | 備考・要望
-        td.responsive-cell
-         .input-container
-          = f.text_area :remarks, placeholder:"（例）ご希望内容等"
+        td
+          strong.label 必須
+        td
+          |採用ページURL2
+        td
+          = f.text_field :recruit_url_2
+      - if admin_signed_in?
+       table.company
+        colgroup
+           col.col-1
+           col.col-2
+           col.col-3
+        tr
+         td
+           strong.label 必須
+         td
+           |成果報酬
+         td
+           = f.text_field :unit_price, placeholder:"人材紹介URLに記載のパーセンテージを適用"
+        tr
+         td
+           strong.label 必須
+         td
+           |返戻条件
+         td
+           = f.text_field :refund, placeholder:"１ヶ月以内４０％"
+        tr
+         td
+           strong.label 必須
+         td
+           |支払日
+         td
+           = f.text_field :payment, placeholder:"月末締めの翌月１０日"
+        tr
+         td
+           strong.label 必須
+         td
+           |取引内容
+         td
+           = f.text_area :plan
+        tr
+         td
+           strong.label 必須
+         td
+           |給与幅
+         td
+           = f.text_area :salary, rows: 5
+        tr
+         td
+           strong.label 必須
+         td
+           |外国人可否
+         td
+           = f.text_field :foreigner
+        tr
+         td
+           strong.label 必須
+         td
+           |経験則
+         td
+           = f.text_area :experience
+        tr
+         td
+           strong.label 必須
+         td
+           |必須言語
+         td
+           = f.text_area :must_be_languages
+        tr
+         td
+           strong.label 必須
+         td
+           |年齢幅
+         td
+           = f.text_area :age
+        tr
+         td
+           strong.label 必須
+         td
+           |その他の採用条件
+         td
+           = f.text_area :employment_conditions, rows: 5
+        tr
+         td
+           strong.label 必須
+         td
+           |書類選考期間・面接回数
+         td
+           = f.text_area :document_screening, rows: 5
+        tr
+         td
+           strong.label 必須
+         td
+           |採用率
+         td
+           = f.text_area :conversion, rows: 5
+        tr
+         td
+           strong.label 必須
+         td
+           |要望・その他
+         td
+           = f.text_area :remarks, rows: 5
+
+      - else
+        tr
+         td
+           strong.label 必須
+         td
+           |成果報酬
+         td
+           = @contract.unit_price
+        tr
+         td
+           strong.label 必須
+         td
+           |返戻条件
+         td
+           = @contract.refund
       tr
         td colspan="3"
-          = f.submit "確認画面", class:"btn btn-primary"
+          = f.submit "登録する", class:"btn btn-primary"
+     

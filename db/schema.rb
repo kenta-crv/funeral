@@ -194,6 +194,10 @@ ActiveRecord::Schema.define(version: 2024_10_15_060520) do
     t.string "employment_conditions"
     t.string "document_screening"
     t.string "conversion"
+    t.string "foreigner"
+    t.string "experience"
+    t.string "age"
+    t.string "must_be_languages"
   end
 
   create_table "cultures", force: :cascade do |t|

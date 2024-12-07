@@ -1,20 +1,16 @@
 class ContractsController < ApplicationController
     before_action :authenticate_admin!, only: [:index, :destroy, :send_mail]  
-      def index
-        @contracts = Contract.order(created_at: "DESC").page(params[:page])
-      end
-    
-      def new
-        @contract = Contract.new
-      end
-    
-      def confirm
-        @contract = Contract.new(contract_params)
-      end
-    
-      def thanks
-        @contract = Contract.new(contract_params)
-        @contract.save
+    def index
+      @contracts = Contract.order(created_at: "DESC").page(params[:page])
+    end
+  
+    def new
+      @contract = Contract.new
+    end
+  
+    def create
+      @contract = Contract.new(contract_params)
+      if @contract.save
         if admin_signed_in?
           ContractMailer.received_email(@contract).deliver # 管理者に通知
           flash[:notice] = "管理者送信のため、取引先にはメールを送らず完了しました。"
@@ -23,13 +19,12 @@ class ContractsController < ApplicationController
           ContractMailer.received_email(@contract).deliver # 管理者に通知
           ContractMailer.send_email(@contract).deliver # 送信者に通知
         end
+        redirect_to contracts_path, notice: "契約が正常に作成されました。"
+      else
+        flash.now[:alert] = "入力内容にエラーがあります。"
+        render :new
       end
-    
-      def create
-        @contract = Contract.new(contract_params)
-        @contract.save
-        redirect_to thanks_contracts_path
-      end
+    end
     
       def show
         @contract = Contract.find(params[:id])
@@ -112,6 +107,11 @@ class ContractsController < ApplicationController
           :employment_conditions, #採用条件
           :document_screening, #書類選考期間
           :conversion, #採択率
+          :aim, #取引内容
+          :foreigner, #外国人可否
+          :experience, #何年以上経験
+          :age, #年齢幅
+          :must_be_languages, #必須言語
         )
       end
   end

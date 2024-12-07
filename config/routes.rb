@@ -32,10 +32,6 @@ Rails.application.routes.draw do
 
     resources :works do
       resources :progresses
-      collection do
-        post :confirm
-        post :thanks
-      end
       member do
         get :apply
         post :send_mail
@@ -46,20 +42,10 @@ Rails.application.routes.draw do
 
     resources :contracts do
       resource :comments
-      collection do
-        post :confirm
-        post :thanks
-      end
       member do
         post :send_mail
         get "info"
         get "conclusion"
-      end
-    end
-    
-    resources :jobs do
-      collection do
-        get :thanks
       end
     end
 
@@ -67,30 +53,6 @@ Rails.application.routes.draw do
       collection do 
         post :import
       end
-    end
-    resources :entries
-
-    resources :companies do 
-      collection do 
-        post :import
-        post :update_import
-      end
-      resources :introductions #概要
-      resources :larges #上場
-      resources :branches #支店
-      resources :histories #沿革
-      resources :presidents #代表歴
-      resources :businesses #事業内容
-      resources :executives #役員一覧
-      resources :cultures #社風
-      resources :recruits #求人
-      resources :awards #表彰
-      resources :achivements #実績
-      resources :reviews #レビュー
-      resources :deaths #ブラック
-      resources :pressreleases #プレスリリース
-      resources :prospects #未来図
-      resources :totals #まとめ
     end
 
     #get '*path', controller: 'application', action: 'render_404'
