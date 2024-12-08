@@ -4,31 +4,26 @@ class WorksController < ApplicationController
     def index
       @works = Work.without_ng_status.order(created_at: :desc).page(params[:page])
     end
-  
+    
     def new
       @work = Work.new
     end
-  
-    def confirm
-      @work = Work.new(work_params)
-    end
-  
-    def thanks
-      @work = Work.new(work_params)
-      @work.save
-      if admin_signed_in?
-        WorkMailer.received_email(@work).deliver # 管理者に通知
-        flash[:notice] = "管理者送信のため、取引先にはメールを送らず完了しました。"
-      else
-        WorkMailer.received_email(@work).deliver # 管理者に通知
-        WorkMailer.send_email(@work).deliver # 送信者に通知
-      end
-    end
-  
+    
     def create
       @work = Work.new(work_params)
-      @work.save
-      redirect_to thanks_works_path
+      if @work.save
+        if admin_signed_in?
+          WorkMailer.received_email(@work).deliver # 管理者に通知
+          flash[:notice] = "管理者送信のため、取引先にはメールを送らず完了しました。"
+        else
+          WorkMailer.received_email(@work).deliver # 管理者に通知
+          WorkMailer.send_email(@work).deliver # 送信者に通知
+        end
+        redirect_to works_path, notice: "作業が正常に登録されました。"
+      else
+        flash.now[:alert] = "登録に失敗しました。入力内容を確認してください。"
+        render :new
+      end
     end
   
     def show

@@ -1,271 +1,179 @@
-- set_meta_tags  title: "年齢#{@work.age}の#{@work.engineer_level}エンジニア|ENGIST"
-- set_meta_tags  description: ''
-
+- set_meta_tags title: "年齢#{@work.age}の#{@work.engineer_level}エンジニア - #{@work.name}|ENGIST"
+- set_meta_tags description: "#{@work.name}の詳細情報"
 - set_meta_tags noindex: true
+
 .center
 .tops-wrapper
- h2.headline  基本情報
- table.company
-      colgroup
-         col width="10%"
-         col width="20%"
-         col width="70%"
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | お名前
-        td.responsive-cell
-         .input-container
-          -if admin_signed_in?
-           = @work.name
-          -else
-           | 非公開
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 携帯番号
-        td.responsive-cell
-         .input-container
-          -if admin_signed_in?
-           = @work.tel
-          -else
-           | 非公開
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | メールアドレス
-        td.responsive-cell
-         .input-container
-          -if admin_signed_in?
-           = @work.email
-          -else
-           | 非公開
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | お住まい
-        td.responsive-cell
-         .input-container
+  h2.headline 基本情報
+
+  table.company
+    colgroup
+      col width="10%"
+      col width="20%"
+      col width="70%"
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | お名前
+      td.responsive-cell
+        .input-container
+          - if admin_signed_in?
+            = @work.name
+          - else
+            | 非公開
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 性別
+      td.responsive-cell
+        .input-container
+          = @work.gender
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 年齢
+      td.responsive-cell
+        .input-container
+          = @work.age
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 携帯番号
+      td.responsive-cell
+        .input-container
+          - if admin_signed_in?
+            = @work.tel
+          - else
+            | 非公開
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | メールアドレス
+      td.responsive-cell
+        .input-container
+          - if admin_signed_in?
+            = @work.email
+          - else
+            | 非公開
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | お住まい
+      td.responsive-cell
+        .input-container
           = @work.address
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | プログラム歴
-        td.responsive-cell
-         .input-container
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | プログラム歴
+      td.responsive-cell
+        .input-container
           = @work.program_histroy
           | 年
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 使用可能言語
-        td.responsive-cell
-         .input-container
-          = @work.program_python
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 業務最短開始日
-        td.responsive-cell
-         .input-container
-          = @work.period
-      tr
-        td.label-cell
-          strong.label.label-blue 任意
-        td.arrow-box-cell
-          | 要望
-        td.responsive-cell
-         .input-container
-          = @work.remarks
 
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 性別
-        td.responsive-cell
-         .input-container
-          = @work.gender
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 年齢
-        td.responsive-cell
-         .input-container
-          = @work.age
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 学歴
-        td.responsive-cell
-         .input-container
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 使用可能言語
+      td.responsive-cell
+        .input-container
+          = @work.program_python
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 学歴
+      td.responsive-cell
+        .input-container
           = @work.education
-      tr
-        td.label-cell
-         strong.label 必須
-        td.arrow-box-cell
-         | 資格
-        td.responsive-cell
-         .input-container
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 資格
+      td.responsive-cell
+        .input-container
           = @work.qualification
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 現在のお仕事
-        td.responsive-cell
-         .input-container
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 現在のお仕事
+      td.responsive-cell
+        .input-container
           = @work.work_now
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 国籍
-        td.responsive-cell
-         .input-container
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 国籍
+      td.responsive-cell
+        .input-container
           = @work.nationality
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | VISA種類
-        td.responsive-cell
-         .input-container
-          = @work.visa
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 日本語レベル
-        td.responsive-cell
-         .input-container
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 日本語レベル
+      td.responsive-cell
+        .input-container
           = @work.japanese_level
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | エンジニアレベル
-        td.responsive-cell
-         .input-container
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | エンジニアレベル
+      td.responsive-cell
+        .input-container
           = @work.engineer_level
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | その他希望
-        td.responsive-cell
-         .input-container
-          = @work.hope
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 職務経歴書
-        td.responsive-cell
-         .input-container style="white-space: pre-wrap;"
-          = @work.histroy
-      tr 
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 自己PR
-        td.responsive-cell
-         .input-container style="white-space: pre-wrap;"
-          = @work.pr 
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 成功報酬条件
-        td.responsive-cell
-         .input-container
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 成功報酬条件
+      td.responsive-cell
+        .input-container
           = @work.conversion
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 推薦
-        td.responsive-cell
-         .input-container
-          = @work.recommendation
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 履歴書
-        td.responsive-cell
-         .input-container
-           - if @work.image.present?
+
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 履歴書
+      td.responsive-cell
+        .input-container
+          - if @work.image.present?
             - if @work.image.content_type.start_with?('image')
               = image_tag @work.image.url
-            - if @work.image.content_type == 'application/pdf'
-              = link_to "PDFを表示", @work.image.url, target: "_blank", class:"btn btn-primary"
-              = link_to "ダウンロード", @work.image.url, download: true, class:"btn btn-primary"
-            - else
+            - elsif @work.image.content_type == 'application/pdf'
+              = link_to "PDFを表示", @work.image.url, target: "_blank", class: "btn btn-primary"
+              = link_to "ダウンロード", @work.image.url, download: true, class: "btn btn-primary"
+          - else
+            | ファイルがありません
 
 .actions_container style="text-align: center; margin-bottom: 30px;"
   = link_to "編集する", edit_work_path(@work), class: "btn btn-danger"
-  - if @work.present?
-    = link_to "削除する", work_path(@work), class: "btn btn-secondary", method: :delete, data: { confirm: '本当に削除しますか？' }, style: "margin-left: 10px;"
-  - else
-    = link_to "削除する", "javascript:void(0)", class: "btn btn-secondary", data: { confirm: 'やりとりが始まっているので削除できません' }, style: "margin-left: 10px;"
-  = link_to "一覧に戻る", works_path
-
-- if admin_signed_in?
- = form_for [@work, @work.progresses.build] do |f|
-  table.company[width="100%"]
-    col[width="25%"]
-    col[width="25%"]
-    col[width="25%"]
-    tbody
-      tr
-        th
-          | ステータス
-        th
-          | 次回営業日
-        th
-          | コメント
-
-      tr
-        td
-          = f.select(:status, [\
-          ["不在","不在"],\
-          ["選定中","選定中"],\
-          ["紹介中","紹介中"],\
-          ["契約","契約"],\
-          ["取引NG","取引NG"],\
-          ["NG","NG"]], include_blank: "選択してください")
-        td
-          = f.datetime_local_field :next
-        td
-          = f.text_area :body
-      tr
-        th[colspan="3"]
-         .center
-          = f.submit "登録する", class:"btn btn-primary"
-
- table.company[width="100%"]
-  - if @work.progresses.any?
-    tbody
-      - @work.progresses.each do |progress|
-        tr
-          td
-            = progress.status
-          td
-            = progress.next
-          td
-            = progress.body
-          - if progress.id.present?
-            td
-              = link_to '編集', edit_work_progress_path(@work, progress)
-            td
-              = link_to '削除', work_progress_path(@work, progress), method: :delete, data: { confirm: '本当に削除しますか？' }
+  = link_to "削除する", work_path(@work), class: "btn btn-secondary", method: :delete, data: { confirm: '本当に削除しますか？' }, style: "margin-left: 10px;"
+  = link_to "一覧に戻る", works_path, class: "btn btn-secondary"

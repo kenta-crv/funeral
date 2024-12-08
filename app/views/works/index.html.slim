@@ -4,6 +4,8 @@
 - set_meta_tags noindex: true
 
 .row
+  .center 
+   = link_to "新規登録", "/works/new", class:"btn btn-primary"
   br
   br
   table.company
@@ -24,6 +26,7 @@
      th エンジニアレベル
      th 日本語レベル
      th 稼働希望日
+     th 経歴書
      th 詳細
    - @works.each do |work|
     tr
@@ -46,6 +49,12 @@
           - else
             = work.japanese_level
      td = work.period
+     td 
+          - if work.image.present?
+            - if work.image.content_type.start_with?('image')
+              = image_tag work.image.url, alt: "履歴書", width: 100
+            - elsif work.image.content_type == 'application/pdf'
+              = link_to "PDF", work.image.url, target: "_blank", class: "btn btn-primary"
      td 
       - if admin_signed_in?
        = link_to work.name, work_path(work), clsss:"store", target: "_blank"

@@ -4,12 +4,14 @@
     - @work.errors.each do |attr, msg|
       li= msg
     br
-table.company.responsive-table
-      colgroup
+= form_with model: @work, local: true do |f|
+   table.company.responsive-table
+    colgroup
         col.col-1
         col.col-2
         col.col-3
-      tr
+
+    tr
         td.label-cell
           strong.label 必須
         td.arrow-box-cell
@@ -17,7 +19,27 @@ table.company.responsive-table
         td.responsive-cell
          .input-container
           = f.text_field :name
-      tr
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 性別
+      td.responsive-cell
+       .input-container
+        = f.select(:gender,[\
+          ["男","男"],\
+          ["女","女"],\
+          ["その他","その他"],\
+         ],include_blank: "選択してください")
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 年齢
+      td.responsive-cell
+       .input-container
+        = f.text_field :age
+    tr
         td.label-cell
           strong.label 必須
         td.arrow-box-cell
@@ -25,7 +47,7 @@ table.company.responsive-table
         td.responsive-cell
          .input-container
           = f.text_field :tel
-      tr
+    tr
         td.label-cell
           strong.label 必須
         td.arrow-box-cell
@@ -33,15 +55,15 @@ table.company.responsive-table
         td.responsive-cell
          .input-container
           = f.email_field :email
-      tr
+    tr
         td.label-cell
           strong.label 必須
         td.arrow-box-cell
-          | 稼働希望エリア
+          | 住所
         td.responsive-cell
          .input-container
           = f.text_field :address
-      tr
+    tr
         td.label-cell
           strong.label 必須
         td.arrow-box-cell
@@ -50,7 +72,7 @@ table.company.responsive-table
          .input-container
           = f.text_field :program_histroy
           | 年
-      tr
+    tr
         td.label-cell
           strong.label 必須
         td.arrow-box-cell
@@ -58,27 +80,79 @@ table.company.responsive-table
         td.responsive-cell
          .input-container
           = f.text_area :program_python
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 業務最短開始日
-        td.responsive-cell
-         .input-container
-          = f.select(:period,[\
-            ["すぐにでも","すぐにでも"],\
-            ["1ヶ月以内","1ヶ月以内"],\
-            ["2ヶ月以内","2ヶ月以内"],\
-            ["3ヶ月以内","3ヶ月以内"],\
-           ],include_blank: "選択してください")
-      tr
-        td.label-cell
-          strong.label.label-blue 任意
-        td.arrow-box-cell
-          | 要望
-        td.responsive-cell
-         .input-container
-          = f.text_area :remarks
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 学歴
+      td.responsive-cell
+       .input-container
+        = f.text_area :education, rows: 5
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 資格
+      td.responsive-cell
+       .input-container
+        = f.text_area :qualification, rows: 5
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 現在のお仕事
+      td.responsive-cell
+       .input-container
+        = f.text_field :work_now
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 国籍
+      td.responsive-cell
+       .input-container
+        = f.text_field :nationality
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 日本語レベル
+      td.responsive-cell
+       .input-container
+        = f.select(:japanese_level,[\
+          ["カタコト","カタコト"],\
+          ["業務可能","業務可能"],\
+          ["日常会話","日常会話"],\
+          ["日本人同等","日本人同等"],\
+         ],include_blank: "選択してください")
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | エンジニアレベル
+      td.responsive-cell
+       .input-container
+        = f.select(:engineer_level,[\
+          ["独学","独学"],\
+          ["経験者","経験者"],\
+          ["即戦力","即戦力"],\
+         ],include_blank: "選択してください")  
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 成功報酬条件
+      td.responsive-cell
+       .input-container
+        = f.text_field :conversion
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 履歴書
+      td.responsive-cell
+       .input-container
+        = f.file_field :image
       tr
         td colspan="3"
-          = f.submit "確認画面", class:"btn btn-primary"
+          = f.submit "送信", class:"btn btn-primary"
