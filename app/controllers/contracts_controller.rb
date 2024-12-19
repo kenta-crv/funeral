@@ -1,7 +1,7 @@
 class ContractsController < ApplicationController
     before_action :authenticate_admin!, only: [:index, :destroy, :send_mail]  
     def index
-      @contracts = Contract.order(created_at: "DESC").page(params[:page])
+      @contracts = Contract.without_ng_status.order(created_at: :desc).page(params[:page])
     end
   
     def new

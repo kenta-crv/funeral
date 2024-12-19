@@ -12,9 +12,9 @@ class CommentsController < ApplicationController
     end    
   
     def edit
+      Rails.logger.debug "PARAMS: #{params.inspect}" # デバッグ出力
       @contract = Contract.find(params[:contract_id])
       @comment = Comment.find(params[:id])
-      #@comment = @contract.comments.build
     end
   
       def destroy

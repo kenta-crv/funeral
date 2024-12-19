@@ -193,5 +193,8 @@
           = comment.next
         td
           = comment.body
-        td
-          = link_to "編集", edit_contract_comments_path(@contract, comment), _blank: "target"
+        - if progress.id.present?
+          td
+            = link_to '編集', edit_contract_comment_path(@contract, comment)
+          td
+            = link_to '削除', contract_comment_path(@contract, comment), method: :delete, data: { confirm: '本当に削除しますか？' }
