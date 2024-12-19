@@ -193,7 +193,7 @@
           = comment.next
         td
           = comment.body
-        - if progress.id.present?
+        - if comment.id.present?
           td
             = link_to '編集', edit_contract_comment_path(@contract, comment)
           td
