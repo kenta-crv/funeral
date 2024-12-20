@@ -195,6 +195,6 @@
           = comment.body
         - if comment.id.present?
           td
-            = link_to '編集', edit_contract_comment_path(@contract, comment)
+            /= link_to '編集', edit_contract_comment_path(@contract, comment)
           td
-            = link_to '削除', contract_comment_path(@contract, comment), method: :delete, data: { confirm: '本当に削除しますか？' }
+            /= link_to '削除', contract_comment_path(@contract, comment), method: :delete, data: { confirm: '本当に削除しますか？' }
