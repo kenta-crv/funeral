@@ -14,12 +14,12 @@ class ContractsController < ApplicationController
         if admin_signed_in?
           ContractMailer.received_email(@contract).deliver # 管理者に通知
           flash[:notice] = "管理者送信のため、取引先にはメールを送らず完了しました。"
-        else
+        #else
           # 一般ユーザーの場合はメール送信を行う
-          ContractMailer.received_email(@contract).deliver # 管理者に通知
-          ContractMailer.send_email(@contract).deliver # 送信者に通知
+          #ContractMailer.received_email(@contract).deliver # 管理者に通知
+          #ContractMailer.send_email(@contract).deliver # 送信者に通知
         end
-        redirect_to contracts_path, notice: "契約が正常に作成されました。"
+        #redirect_to contracts_path, notice: "契約が正常に作成されました。"
       else
         flash.now[:alert] = "入力内容にエラーがあります。"
         render :new

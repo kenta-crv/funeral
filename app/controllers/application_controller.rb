@@ -36,7 +36,7 @@ private
   def after_sign_in_path_for(resource)
     case resource
     when Admin
-      "/" #先々一覧を見れるアナリティクスへ
+      "/contracts" #先々一覧を見れるアナリティクスへ
     else
       "/"
     end

@@ -17,12 +17,15 @@ class CommentsController < ApplicationController
       @comment = Comment.find(params[:id])
     end
   
-      def destroy
-          @contract = Contract.find(params[:contract_id])
-          @comment = @contract.comments.find(params[:id])
-          @comment.destroy
-          redirect_to contract_path(@contract)
-      end
+    def destroy
+      Rails.logger.debug "PARAMS: #{params.inspect}" # パラメータを確認
+      @contract = Contract.find(params[:contract_id])
+      Rails.logger.debug "@contract: #{@contract.inspect}" # Contract を確認
+      @comment = @contract.comments.find(params[:id]) # params[:id] を確認
+      Rails.logger.debug "@comment: #{@comment.inspect}" # Comment を確認
+      @comment.destroy
+      redirect_to contract_path(@contract), notice: 'コメントを削除しました。'
+    end
   
     def update
       @contract = Contract.find(params[:contract_id])

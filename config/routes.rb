@@ -16,20 +16,6 @@ Rails.application.routes.draw do
     get 'recruit' => 'tops#recruit'
     get 'ai' => 'tops#ai'
 
-    resources :estimates do
-      resource :comments
-      collection do
-        post :confirm
-        post :thanks
-      end
-      member do
-        get :apply
-        post :send_mail
-        get :confirm_point
-        post :apply
-      end
-    end
-
     resources :works do
       resources :progresses
       member do
@@ -41,7 +27,7 @@ Rails.application.routes.draw do
     end
 
     resources :contracts do
-      resource :comments
+      resources :comments, only: [:create, :edit, :update, :destroy], param: :id
       member do
         post :send_mail
         get "info"
