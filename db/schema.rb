@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_15_060520) do
+ActiveRecord::Schema.define(version: 2024_12_25_184842) do
 
   create_table "achivements", force: :cascade do |t|
     t.integer "company_id"
@@ -198,6 +198,8 @@ ActiveRecord::Schema.define(version: 2024_10_15_060520) do
     t.string "experience"
     t.string "age"
     t.string "must_be_languages"
+    t.integer "work_id"
+    t.index ["work_id"], name: "index_contracts_on_work_id"
   end
 
   create_table "cultures", force: :cascade do |t|
@@ -422,6 +424,7 @@ ActiveRecord::Schema.define(version: 2024_10_15_060520) do
     t.string "pr"
     t.string "qualification"
     t.string "image"
+    t.boolean "introduced"
   end
 
 end

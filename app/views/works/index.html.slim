@@ -1,66 +1,94 @@
-- set_meta_tags  title: '紹介可能人材一覧|ENGIST'
-- set_meta_tags  description: ''
-
-- set_meta_tags noindex: true
-
 .row
-  .center 
-   = link_to "新規登録", "/works/new", class:"btn btn-primary"
+  .center
+    = link_to "新規登録", "/works/new", class: "btn btn-primary"
   br
   br
   table.company
-   colgroup
-     col width="10%"
-     col width="30%"  
-     col width="10%"
-     col width="10%"
-     col width="10%"
-     col width="10%" 
-     col width="10%"
-     col width="10%"
-   tr
-     th 年齢
-     th 言語
-     th プログラマー歴
-     th 国籍
-     th エンジニアレベル
-     th 日本語レベル
-     th 稼働希望日
-     th 経歴書
-     th 詳細
-   - @works.each do |work|
+    colgroup
+      col width="10%"
+      col width="30%"
+      col width="10%"
+      col width="10%"
+      col width="10%"
+      col width="10%"
+      col width="10%"
+      col width="10%"
     tr
-     td = work.age
-     td = work.program_python
-     td 
+      th 年齢
+      th 言語
+      th プログラマー歴
+      th 国籍
+      th エンジニアレベル
+      th 日本語レベル
+      th 稼働希望日
+      th 経歴書
+      th 詳細
+      th 紹介
+    - @works.each do |work|
+      tr
+        td = work.age
+        td = work.program_python
+        td
           - if work.program_histroy.to_i >= 3
             strong style="color: red;" = work.program_histroy
           - else
             = work.program_histroy
-     td = work.nationality
-     td           
+        td = work.nationality
+        td
           - if ['即戦力', '経験者'].include?(work.engineer_level)
             strong style="color: blue;" = work.engineer_level
           - else
             = work.engineer_level
-     td 
+        td
           - if ['日常会話', '日本人同等'].include?(work.japanese_level)
             strong style="color: green;" = work.japanese_level
           - else
             = work.japanese_level
-     td = work.period
-     td 
+        td = work.period
+        td
           - if work.image.present?
             - if work.image.content_type.start_with?('image')
               = image_tag work.image.url, alt: "履歴書", width: 100
             - elsif work.image.content_type == 'application/pdf'
               = link_to "PDF", work.image.url, target: "_blank", class: "btn btn-primary"
-     td 
-      - if admin_signed_in?
-       = link_to work.name, work_path(work), clsss:"store", target: "_blank"
-      - else
-       = link_to "詳細へ進む", work_path(work), clsss:"store", target: "_blank"
+        td
+          - if admin_signed_in?
+            = link_to work.name, work_path(work), class: "store", target: "_blank"
+          - else
+            = link_to "詳細へ進む", work_path(work), class: "store", target: "_blank"
+        td
+          button.btn.btn-success.btn-md[data-toggle="modal" data-target="#searchOnce"]
+            |  紹介する
   br
-    hr.line
-    br
-    = paginate(@works)
+  hr.line
+  br
+  = paginate(@works)
+
+#searchOnce.modal.fade[tabindex="-1" role="dialog" aria-labelledby="dialogHeader" aria-hidden="true"]
+  .modal-dialog
+    .modal-content[style="width:900px; margin-left: -200px;"]
+      .modal-header
+        button.close[type="button" data-dismiss="modal" aria-hidden="true"]
+          | ×
+      .modal-body
+        button.btn.btn-primary#select-all-btn
+          | 全て選択
+        button.btn.btn-secondary#deselect-all-btn
+          | 全て解除
+        = form_with url: send_bulk_email_path, method: :post, local: true do |f|
+          = hidden_field_tag :work_id, @work.id
+          table.company
+            thead
+              tr
+                th
+                  input#select-all-checkbox[type="checkbox"]
+                th
+                  | 会社名
+            tbody
+              - @contracts.each do |contract|
+                tr
+                  td
+                    input.bulk-checkbox[type="checkbox" name="contract_ids[]" value=contract.id]
+                  td
+                    = contract.co
+          = f.submit 'メール送信', class: 'btn btn-success'

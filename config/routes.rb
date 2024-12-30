@@ -23,6 +23,8 @@ Rails.application.routes.draw do
         post :send_mail
         get :confirm_point
         post :apply
+        get :contracts
+        post :send_contracts
       end
     end
 
@@ -40,6 +42,8 @@ Rails.application.routes.draw do
         post :import
       end
     end
+
+    post 'contracts/send_bulk_email', to: 'contracts#send_bulk_email', as: 'send_bulk_email'
 
     #get '*path', controller: 'application', action: 'render_404'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

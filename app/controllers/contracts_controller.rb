@@ -56,6 +56,26 @@ class ContractsController < ApplicationController
         ContractMailer.send_first_email(@contract).deliver_now
         redirect_to info_contract_path(@contract), notice: "#{@contract.co}へ契約依頼のメール送信を行いました。"
       end
+
+      def send_bulk_email
+        work_id = params[:work_id] # works/:id を取得
+        contract_ids = params[:contract_ids] # 選択された contracts/:id を取得
+    
+        if work_id.present? && contract_ids.present?
+          work = Work.find(work_id) # 送信元の work を固定
+          contracts = Contract.where(id: contract_ids)
+    
+          contracts.each do |contract|
+            ContractMailer.with(contract: contract, work: work).send_contract_email.deliver_now
+          end
+    
+          flash[:notice] = "#{contracts.size}件のメールを送信しました。"
+        else
+          flash[:alert] = "送信に必要な情報が不足しています。"
+        end
+    
+        redirect_to work_path(work_id)
+      end
     
       def update
         @contract = Contract.find(params[:id])

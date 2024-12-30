@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = {host: "comicomi.cc"}
+  config.action_mailer.default_url_options = {host: "engist.jp"}
   config.action_mailer.raise_delivery_errors = true
 
   # ActionMailer::Base.delivery_method = :letter_opener_web
@@ -10,7 +10,7 @@ Rails.application.configure do
   domain: 'engist.jp',
   port: 587,
   user_name: 'info@engist.jp',
-  password: 'a3t_gX_5-_Weq_m7',
+  password: 'ZjY5M2ExYj91c54_3',
   authentication: 'plain',
   enable_starttls_auto: true
   }

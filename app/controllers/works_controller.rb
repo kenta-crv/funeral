@@ -1,8 +1,10 @@
 class WorksController < ApplicationController
     before_action :authenticate_admin!, only: [ :edit, :update, :destroy, :send_mail]
-  
+    before_action :set_work, only: [:contracts, :send_contracts]
     def index
       @works = Work.without_ng_status.order(created_at: :desc).page(params[:page])
+      @contracts = Contract.all
+      @work = @works.first # デフォルトで最初のworkを設定
     end
     
     def new
@@ -58,7 +60,57 @@ class WorksController < ApplicationController
       redirect_to work_path(@work), alert: "送信しました"
     end
 
-    private
+  # モーダル用: 紹介可能なContractの取得
+  def contracts
+    #@work = Work.find(params[:id]) # URLからWork IDを取得
+    @contracts = Contract.all
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def send_bulk_email
+    work_id = params[:work_id] # works/:id を取得
+    contract_ids = params[:contract_ids] # 選択された contracts/:id を取得
+  
+    if work_id.present? && contract_ids.present?
+      work = Work.find(work_id) # 送信元の work を固定
+      contracts = Contract.where(id: contract_ids)
+  
+      contracts.each do |contract|
+        ContractMailer.with(contract: contract, work: work).send_contract_email.deliver_now
+      end
+  
+      flash[:notice] = "#{contracts.size}件のメールを送信しました。"
+    else
+      flash[:alert] = "送信に必要な情報が不足しています。"
+    end
+  
+    redirect_to work_path(work_id)
+  end
+
+  def send_contracts
+    selected_contracts = Contract.where(id: params[:contract_ids])
+    # 選択されたContractの処理をここで実装
+    selected_contracts.each do |contract|
+      # 例: メール送信やログ出力
+      Rails.logger.info "Processing contract ID: #{contract.id}, Company: #{contract.co}"
+    end
+    flash[:notice] = "選択された契約が処理されました。"
+    redirect_to works_path
+  end  
+
+  # 紹介済み企業一覧
+  def introduced
+    @works = Work.where(introduced: true)
+  end
+
+  private
+
+  def set_work
+    @work = Work.find(params[:id])
+  end
+
     def work_params
       params.require(:work).permit(
         :name,  #フルネーム
@@ -85,6 +137,7 @@ class WorksController < ApplicationController
         :pr,
         :qualification,
         :image,
+        :introduced
       )
     end
   end
