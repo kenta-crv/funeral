@@ -1,6 +1,6 @@
 class Contract < ApplicationRecord
     has_many :comments
-    belongs_to :work
+    belongs_to :work, optional: true
     def self.without_ng_status
         # 最新の進捗状況がNGでないWorkのみを返す
         where.not(id: Contract.joins(:comments)

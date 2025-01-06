@@ -19,7 +19,7 @@ class ContractsController < ApplicationController
           #ContractMailer.received_email(@contract).deliver # 管理者に通知
           #ContractMailer.send_email(@contract).deliver # 送信者に通知
         end
-        #redirect_to contracts_path, notice: "契約が正常に作成されました。"
+        redirect_to contracts_path, notice: "契約が正常に作成されました。"
       else
         flash.now[:alert] = "入力内容にエラーがあります。"
         render :new
@@ -130,7 +130,7 @@ class ContractsController < ApplicationController
           :experience, #何年以上経験
           :age, #年齢幅
           :must_be_languages, #必須言語
-        )
+          :work_id)
       end
   end
   
