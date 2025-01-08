@@ -210,6 +210,9 @@
           line-height:12vw;
         }
     }
+    .image-line {
+      margin-top: 0px;
+    }
     /*イエローライン*/
     .push {
         text-align:center;
@@ -455,13 +458,17 @@
 
 
  .surprise {
-   font-size:6.0vw;
-   color:white;
-   font-weight:bold;
-   background-color:$main_color;
-   padding:35px;
- }
+  font-size: 6.0vw;
+  color: white;
+  font-weight: bold;
+  background-color: $main_color;
+  padding: 35px;
 
+  /* スマホ対応 */
+  @media (max-width: 768px) { /* 画面幅768px以下をスマホと定義 */
+    font-size: 5.5vw;
+  }
+}
  .balloon-right {
    margin: 0 auto;
    padding: 7px 10px;
@@ -877,25 +884,42 @@ table.company {
  }
 
 
- .top-wrapper {
-   margin:0 40px -50px;
-   text-align:left;
-    .float-image{
-      float:left;
-      margin:0 20px 20px 0px;
-    }
-    p{
-      font-size:16px;
-      line-height:2.0;
-    }
-    strong{
-      font-size: 3rem;
-      color: $main_color;
-      font-weight: bold;
-      line-height: 5.5rem;
+.top-wrapper {
+  margin: 0 40px -50px;
+  text-align: left;
+
+  .float-image {
+    float: left;
+    margin: 0 20px 20px 0px;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 2.0;
+
+    @media (max-width: 768px) { /* タブレット以下 */
+      font-size: 14px;
     }
 
- }
+    @media (max-width: 480px) { /* スマートフォン以下 */
+      font-size: 14px;
+    }
+  }
+
+  strong {
+    font-size: 3rem;
+    color: $main_color;
+    font-weight: bold;
+    line-height: 5.5rem;
+  }
+
+  .underline-red {
+    color: red; /* 赤字 */
+    text-decoration: underline; /* アンダーライン */
+    font-weight: bold;
+  }
+}
+
 
 
 
@@ -1750,48 +1774,72 @@ table.right {margin:5px 50px 5px 0px;}
 }
 
 
-/*テーブル共通*/
+/* テーブル共通 */
 table.free {
-  width: 90%;
+  width: 100%; /* テーブルを画面幅いっぱいに調整 */
   margin: 0 auto;
   border-collapse: separate;
   border-spacing: 0px 15px;
   font-size: 1.3vw;
-  th, td { padding: 10px; }
+
+  /* thとtdのスタイル */
+  th, td {
+    padding: 10px;
+  }
+
   th {
-     background: $main_color;
-     vertical-align: middle;
-     text-align: left;
-     overflow: visible;
-     position: relative;
-     color: #fff;
-     size:24px;
-     font-weight: bold;
-     :after {
-        left: 100%;
-        top: 50%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-        border-color: rgba(136, 183, 213, 0);
-        border-left-color: $main_color;
-        border-width: 10px;
-        margin-top: -10px;
-        }
-     }
+    background: $main_color;
+    vertical-align: middle;
+    text-align: left;
+    overflow: visible;
+    position: relative;
+    color: #fff;
+    font-size: 1.5em; /* 統一したサイズ */
+    font-weight: bold;
+  }
+
+  th:after {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(136, 183, 213, 0);
+    border-left-color: $main_color;
+    border-width: 10px;
+    margin-top: -10px;
+  }
 
   td {
-     background: #f4f4f4;
-     color:red;
-     font-weight: bold;
-     font-size:30px;
-     }
-     
+    background: #f4f4f4;
+    color: red;
+    font-weight: bold;
+    font-size: 1.2em; /* フォントサイズをvwからemに変更 */
+  }
 }
 
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  table.free {
+    font-size: 14px; /* フォントサイズを縮小 */
+    width: 100%; /* テーブル幅を100%に */
+  }
+
+  th, td {
+    font-size: 1em; /* ヘッダーとセルのサイズを調整 */
+    display: block; /* 各セルをブロック化 */
+    width: 100%; /* セルを幅いっぱいに */
+    text-align: left; /* 左揃え */
+  }
+
+  tr {
+    display: block; /* 行ごとブロック化 */
+    margin-bottom: 10px; /* 行間の余白 */
+  }
+}
 
 .box13 {
     padding: 0em 1em;
@@ -1831,30 +1879,50 @@ table.free {
 }
 
 
-/* 基本的なテーブルスタイリング */
+/* テーブルのレスポンシブ対応 */
 table.recruit {
-  width: 100%; /* テーブルの幅を指定 */
-  border-collapse: collapse; /* セルの境界線を合わせる */
-  font-size: 14px; /* フォントサイズ */
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
 }
 
 table.recruit th, table.recruit td {
-  border: 1px solid #ddd; /* 境界線のスタイル */
-  padding: 8px; /* セルのパディング */
-  text-align: left; /* テキストの配置 */
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
-/* 見出し行のスタイリング */
 table.recruit th {
-  background-color: #f2f2f2; /* 背景色 */
-  color: #333; /* テキストの色 */
-  font-weight: bold; /* フォントの太さ */
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
 }
 
-/* 特定のセルのスタイリング */
 table.recruit td.price {
-  color: red; /* テキストの色 */
-  font-weight: bold; /* フォントの太さ */
+  color: red;
+  font-weight: bold;
+  font-size: 1.2em; /* フォントサイズを大きく調整 */
+}
+
+/* レスポンシブ表示 */
+@media (max-width: 768px) {
+  .box30 {
+    margin-bottom: 20px; /* 各ボックス間の間隔を追加 */
+  }
+
+  table.recruit {
+    display: block; /* テーブル全体をブロック表示 */
+    overflow-x: auto; /* 横スクロールを許可 */
+    white-space: nowrap; /* セルのテキストが折り返されないように設定 */
+  }
+
+  table.recruit th, table.recruit td {
+    font-size: 12px; /* フォントサイズを調整 */
+  }
+
+  table.recruit td.price {
+    font-size: 1.5em; /* `.price`のフォントサイズをさらに強調 */
+  }
 }
 
 
