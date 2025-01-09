@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_01_06_141430) do
+ActiveRecord::Schema.define(version: 2025_01_09_093401) do
 
   create_table "achivements", force: :cascade do |t|
     t.integer "company_id"
@@ -199,6 +199,7 @@ ActiveRecord::Schema.define(version: 2025_01_06_141430) do
     t.string "age"
     t.string "must_be_languages"
     t.integer "work_id"
+    t.string "cc"
     t.index ["work_id"], name: "index_contracts_on_work_id"
   end
 

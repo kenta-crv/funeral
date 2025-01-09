@@ -52,6 +52,14 @@
          .input-container
           = f.email_field :email, placeholder:"（例）abc@def.jp"
       tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
+          | CC
+        td.responsive-cell
+         .input-container
+          = f.email_field :cc, placeholder:"（例）abc@def.jp"
+      tr
         td
           strong.label 必須
         td

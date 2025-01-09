@@ -46,6 +46,13 @@
         td.label-cell
           strong.label 必須
         td.arrow-box-cell
+          | メールアドレス
+        td.responsive-cell
+          = @contract.cc
+      tr
+        td.label-cell
+          strong.label 必須
+        td.arrow-box-cell
           | 代表者名
         td.responsive-cell
           = "#{@contract.president_first} #{@contract.president_last}"

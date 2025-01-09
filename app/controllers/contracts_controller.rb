@@ -130,6 +130,7 @@ class ContractsController < ApplicationController
           :experience, #何年以上経験
           :age, #年齢幅
           :must_be_languages, #必須言語
+          :cc,
           :work_id)
       end
   end

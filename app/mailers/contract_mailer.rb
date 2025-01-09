@@ -58,6 +58,6 @@ class ContractMailer < ActionMailer::Base
     @contract = params[:contract] # メールの送信先
     @work = params[:work]         # works/:id のリンク用
     @work_url = work_url(@work)   # works/:id のURLを生成
-    mail(to: @contract.email, subject: '人材紹介のご案内')
+    mail(to: @contract.email, cc: @contract.cc, subject: '人材紹介のご案内')
   end
 end
