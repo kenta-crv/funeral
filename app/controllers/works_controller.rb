@@ -32,6 +32,7 @@ class WorksController < ApplicationController
       @work = Work.find(params[:id])
       @progress = Progress.new # この行を削除
       @progresses = @work.progresses # すべてのprogressを取得する
+      @all_email_logs = EmailLog.includes(:contract).where(work_id: @work.id)
     end
   
     def edit
@@ -77,10 +78,7 @@ class WorksController < ApplicationController
       work = Work.find(work_id) # 送信元の work を固定
       contracts = Contract.where(id: contract_ids)
   
-      contracts.each do |contract|
-        ContractMailer.with(contract: contract, work: work).send_contract_email.deliver_now
-      end
-  
+      send_emails_and_log(work, contracts) # メール送信とログ記録を共通化
       flash[:notice] = "#{contracts.size}件のメールを送信しました。"
     else
       flash[:alert] = "送信に必要な情報が不足しています。"
@@ -88,24 +86,45 @@ class WorksController < ApplicationController
   
     redirect_to work_path(work_id)
   end
-
+  
   def send_contracts
-    selected_contracts = Contract.where(id: params[:contract_ids])
-    # 選択されたContractの処理をここで実装
-    selected_contracts.each do |contract|
-      # 例: メール送信やログ出力
-      Rails.logger.info "Processing contract ID: #{contract.id}, Company: #{contract.co}"
+    contract_ids = params[:contract_ids] # 選択された contracts/:id を取得
+  
+    if contract_ids.present?
+      selected_contracts = Contract.where(id: contract_ids)
+  
+      send_emails_and_log(nil, selected_contracts) # Work を指定せずにメール送信
+      flash[:notice] = "選択された契約が処理され、メールを送信しました。"
+    else
+      flash[:alert] = "送信に必要な情報が不足しています。"
     end
-    flash[:notice] = "選択された契約が処理されました。"
+  
     redirect_to works_path
-  end  
-
-  # 紹介済み企業一覧
-  def introduced
-    @works = Work.where(introduced: true)
   end
-
+  
+  # 共通のメール送信とログ記録メソッド
   private
+  
+  def send_emails_and_log(work, contracts)
+    contracts.each do |contract|
+      # デバッグ: 処理中の契約IDを出力
+      puts "Processing Contract ID: #{contract.id}"
+  
+      # メール送信
+      ContractMailer.with(contract: contract, work: work).send_contract_email.deliver_now
+  
+      # 履歴保存
+      email_log = EmailLog.create(work: work, contract: contract, sent_at: Time.current)
+  
+      # 保存成功・失敗のログ
+      if email_log.persisted?
+        puts "EmailLog created: Work ID: #{email_log.work_id}, Contract ID: #{email_log.contract_id}, Sent At: #{email_log.sent_at}"
+      else
+        puts "Failed to create EmailLog for Contract ID: #{contract.id}. Errors: #{email_log.errors.full_messages}"
+      end
+    end
+  end
+  
 
   def set_work
     @work = Work.find(params[:id])

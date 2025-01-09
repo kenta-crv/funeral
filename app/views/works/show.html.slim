@@ -228,3 +228,28 @@
               = link_to '編集', edit_work_progress_path(@work, progress)
             td
               = link_to '削除', work_progress_path(@work, progress), method: :delete, data: { confirm: '本当に削除しますか？' }
+
+
+
+h2.headline 送信履歴
+
+- if @all_email_logs.any?
+  table.company
+    thead
+      tr
+        th Work ID
+        th Contract ID
+        th Company
+        th Email
+        th Sent At
+    tbody
+      - @all_email_logs.each do |log|
+        tr
+          td= log.work_id
+          td= log.contract.id
+          td= log.contract.co
+          td= log.contract.email
+          td= log.sent_at
+- else
+  p 送信履歴がありません。
+
