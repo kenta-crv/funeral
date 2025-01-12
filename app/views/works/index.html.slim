@@ -57,38 +57,7 @@
           - else
             = link_to "詳細へ進む", work_path(work), class: "store", target: "_blank"
         td
-          button.btn.btn-success.btn-md[data-toggle="modal" data-target="#searchOnce"]
-            |  紹介する
-  br
+          = link_to "紹介する", contracts_work_path(work), class: "btn btn-primary"
   hr.line
   br
   = paginate(@works)
-
-#searchOnce.modal.fade[tabindex="-1" role="dialog" aria-labelledby="dialogHeader" aria-hidden="true"]
-  .modal-dialog
-    .modal-content[style="width:900px; margin-left: -200px;"]
-      .modal-header
-        button.close[type="button" data-dismiss="modal" aria-hidden="true"]
-          | ×
-      .modal-body
-        button.btn.btn-primary#select-all-btn
-          | 全て選択
-        button.btn.btn-secondary#deselect-all-btn
-          | 全て解除
-        = form_with url: send_bulk_email_path, method: :post, local: true do |f|
-          = hidden_field_tag :work_id, @work.id
-          table.company
-            thead
-              tr
-                th
-                  input#select-all-checkbox[type="checkbox"]
-                th
-                  | 会社名
-            tbody
-              - @contracts.each do |contract|
-                tr
-                  td
-                    input.bulk-checkbox[type="checkbox" name="contract_ids[]" value=contract.id]
-                  td
-                    = contract.co
-          = f.submit 'メール送信', class: 'btn btn-success'

@@ -15,4 +15,10 @@ class WorkMailer < ActionMailer::Base
       format.text
     end
   end
+
+  def send_work_info(work, contract)
+    @work = work
+    @contract = contract
+    mail(to: @contract.email, cc: @contract.cc, subject: '人材紹介のご案内')
+  end
 end

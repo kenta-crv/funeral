@@ -4,11 +4,14 @@ class WorksController < ApplicationController
     def index
       @works = Work.without_ng_status.order(created_at: :desc).page(params[:page])
       @contracts = Contract.all
-      @work = @works.first # デフォルトで最初のworkを設定
     end
     
     def new
       @work = Work.new
+    end
+
+    def contracts
+      @contracts = Contract.without_ng_status.order(created_at: :desc).page(params[:page])
     end
     
     def create
@@ -59,72 +62,30 @@ class WorksController < ApplicationController
       @work.update(send_mail_flag: true)
       WorkMailer.client_email(@work).deliver # 全企業に送信
       redirect_to work_path(@work), alert: "送信しました"
-    end
-
-  # モーダル用: 紹介可能なContractの取得
-  def contracts
-    #@work = Work.find(params[:id]) # URLからWork IDを取得
-    @contracts = Contract.all
-    respond_to do |format|
-      format.js
-    end
-  end
+    end  
   
-  def send_bulk_email
-    work_id = params[:work_id] # works/:id を取得
-    contract_ids = params[:contract_ids] # 選択された contracts/:id を取得
-  
-    if work_id.present? && contract_ids.present?
-      work = Work.find(work_id) # 送信元の work を固定
-      contracts = Contract.where(id: contract_ids)
-  
-      send_emails_and_log(work, contracts) # メール送信とログ記録を共通化
-      flash[:notice] = "#{contracts.size}件のメールを送信しました。"
-    else
-      flash[:alert] = "送信に必要な情報が不足しています。"
-    end
-  
-    redirect_to work_path(work_id)
-  end
-  
-  def send_contracts
-    contract_ids = params[:contract_ids] # 選択された contracts/:id を取得
-  
-    if contract_ids.present?
-      selected_contracts = Contract.where(id: contract_ids)
-  
-      send_emails_and_log(nil, selected_contracts) # Work を指定せずにメール送信
-      flash[:notice] = "選択された契約が処理され、メールを送信しました。"
-    else
-      flash[:alert] = "送信に必要な情報が不足しています。"
-    end
-  
-    redirect_to works_path
-  end
-  
-  # 共通のメール送信とログ記録メソッド
-  private
-  
-  def send_emails_and_log(work, contracts)
-    contracts.each do |contract|
-      # デバッグ: 処理中の契約IDを出力
-      puts "Processing Contract ID: #{contract.id}"
-  
-      # メール送信
-      ContractMailer.with(contract: contract, work: work).send_contract_email.deliver_now
-  
-      # 履歴保存
-      email_log = EmailLog.create(work: work, contract: contract, sent_at: Time.current)
-  
-      # 保存成功・失敗のログ
-      if email_log.persisted?
-        puts "EmailLog created: Work ID: #{email_log.work_id}, Contract ID: #{email_log.contract_id}, Sent At: #{email_log.sent_at}"
-      else
-        puts "Failed to create EmailLog for Contract ID: #{contract.id}. Errors: #{email_log.errors.full_messages}"
+    def send_contracts
+      @work = Work.find(params[:id])
+      contract_ids = params[:contract_ids] || [] # チェックされた企業IDを取得
+    
+      contract_ids.each do |contract_id|
+        contract = Contract.find(contract_id)
+        # 中間テーブルに保存
+        WorkContract.create!(work: @work, contract: contract)
+        
+        # メール送信処理（例: メールアドレスが登録されている場合）
+        if contract.email.present?
+          WorkMailer.send_work_info(@work, contract).deliver_now
+        else
+          Rails.logger.warn "Contract ID #{contract_id} にメールアドレスが設定されていません"
+        end
       end
+    
+      redirect_to work_path(@work), notice: "#{contract_ids.size}件の企業に送信しました。"
     end
-  end
-  
+    
+
+  private
 
   def set_work
     @work = Work.find(params[:id])

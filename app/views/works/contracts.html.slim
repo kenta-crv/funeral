@@ -1,0 +1,19 @@
+h1 求職者: #{@work.name} の企業一覧
+
+= form_with url: send_contracts_work_path(@work), method: :post do |f|
+  table
+    thead
+      tr
+        th チェック
+        th 企業名
+        th 住所
+        th 電話番号
+    tbody
+      - @contracts.each do |contract|
+        tr
+          td = check_box_tag 'contract_ids[]', contract.id
+          td = contract.co
+          td = contract.address
+          td = contract.tel
+  br
+  = f.submit "選択した企業に送信", class: "btn btn-primary"
