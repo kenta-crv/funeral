@@ -4,7 +4,8 @@
     - @work.errors.each do |attr, msg|
       li= msg
     br
-= form_with model: @work, local: true do |f|
+= form_with model: @work, local: true, multipart: true do |f|
+
    table.company.responsive-table
     colgroup
         col.col-1
