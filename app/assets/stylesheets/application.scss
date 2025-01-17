@@ -1769,7 +1769,7 @@ table.right {margin:5px 50px 5px 0px;}
 }
 @media only screen and (max-width: 599px) { 
   .block-image {
-      width: 100%; // スマホの場合（575px以下）は90%
+      width: 95%; // スマホの場合（575px以下）は90%
   }
 }
 
@@ -1879,49 +1879,51 @@ table.free {
 }
 
 
-/* テーブルのレスポンシブ対応 */
+/* テーブル全体のスタイル */
 table.recruit {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
+  width: 100%; /* テーブル幅を常に100％に設定 */
+  border-collapse: collapse; /* セル間の隙間をなくす */
+  table-layout: fixed; /* セル幅を均等に固定 */
+  font-size: 14px; /* フォントサイズを適切に調整 */
 }
 
+/* 各セルのスタイル */
 table.recruit th, table.recruit td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+  border: 1px solid #ddd; /* セルの境界線 */
+  padding: 8px; /* セル内の余白 */
+  text-align: left; /* テキストを左揃え */
+  word-wrap: break-word; /* 長い単語を折り返し */
 }
 
+/* ヘッダーセルのスタイル */
 table.recruit th {
-  background-color: #f2f2f2;
-  color: #333;
-  font-weight: bold;
+  background-color: #f2f2f2; /* ヘッダーの背景色 */
+  color: #333; /* ヘッダー文字色 */
+  font-weight: bold; /* ヘッダー文字を太字に */
 }
 
+/* 特定のセル（価格）のスタイル */
 table.recruit td.price {
-  color: red;
-  font-weight: bold;
-  font-size: 1.2em; /* フォントサイズを大きく調整 */
+  color: red; /* テキスト色を赤に設定 */
+  font-weight: bold; /* 太字に設定 */
+  font-size: 1.2em; /* フォントサイズを大きく設定 */
 }
 
-/* レスポンシブ表示 */
+/* レスポンシブ対応 */
 @media (max-width: 768px) {
-  .box30 {
-    margin-bottom: 20px; /* 各ボックス間の間隔を追加 */
-  }
-
   table.recruit {
-    display: block; /* テーブル全体をブロック表示 */
+    width: 100%; /* レスポンシブでも幅を100％に保つ */
+    table-layout: fixed; /* 固定レイアウトで均等幅を維持 */
     overflow-x: auto; /* 横スクロールを許可 */
-    white-space: nowrap; /* セルのテキストが折り返されないように設定 */
   }
 
   table.recruit th, table.recruit td {
-    font-size: 12px; /* フォントサイズを調整 */
+    font-size: 12px; /* スマホ用にフォントサイズを小さく調整 */
+    text-align: left; /* 左揃えを維持 */
   }
 
   table.recruit td.price {
-    font-size: 1.5em; /* `.price`のフォントサイズをさらに強調 */
+    font-size: 1.5em; /* `.price`セルのフォントサイズを強調 */
   }
 }
 
