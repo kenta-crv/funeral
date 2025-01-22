@@ -229,12 +229,12 @@
             td
               = link_to '削除', work_progress_path(@work, progress), method: :delete, data: { confirm: '本当に削除しますか？' }
 
+ 
+- if admin_signed_in?
+ h1 求職者: #{@work.name}
 
-
-h1 求職者: #{@work.name}
-
-h2 送信済みの企業一覧
-table
+ h2 送信済みの企業一覧
+ table
   thead
     tr
       th 企業名
