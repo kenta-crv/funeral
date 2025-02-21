@@ -11,7 +11,7 @@ class WorksController < ApplicationController
     end
 
     def contracts
-      @contracts = Contract.without_ng_status.order(created_at: :desc).page(params[:page])
+      @contracts = Contract.without_ng_status.order(created_at: :desc)
     end
     
     def create
