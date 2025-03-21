@@ -1,5 +1,5 @@
 class ContractsController < ApplicationController
-    before_action :authenticate_admin!, only: [:index, :destroy, :send_mail]  
+    #before_action :authenticate_admin!, only: [:index, :destroy, :send_mail]  
     def index
       @contracts = Contract.without_ng_status.order(created_at: :desc).page(params[:page])
     end
@@ -7,24 +7,46 @@ class ContractsController < ApplicationController
     def new
       @contract = Contract.new
     end
+
+    def confirm
+      @contract = Contract.new(contract_params)
+    end
+  
+    def thanks
+      @contract = Contract.new(contract_params)
+      @contract.save
+      if admin_signed_in?
+        ContractMailer.received_email(@contract).deliver # 管理者に通知
+        flash[:notice] = "管理者送信のため、取引先にはメールを送らず完了しました。"
+      else
+        # 一般ユーザーの場合はメール送信を行う
+        ContractMailer.received_email(@contract).deliver # 管理者に通知
+        ContractMailer.send_email(@contract).deliver # 送信者に通知
+      end
+    end
   
     def create
       @contract = Contract.new(contract_params)
-      if @contract.save
-        if admin_signed_in?
-          ContractMailer.received_email(@contract).deliver # 管理者に通知
-          flash[:notice] = "管理者送信のため、取引先にはメールを送らず完了しました。"
+      @contract.save
+      redirect_to thanks_contracts_path
+    end
+    #def create
+     # @contract = Contract.new(contract_params)
+     # if @contract.save
+     #   if admin_signed_in?
+     #     ContractMailer.received_email(@contract).deliver # 管理者に通知
+     #     flash[:notice] = "管理者送信のため、取引先にはメールを送らず完了しました。"
         #else
           # 一般ユーザーの場合はメール送信を行う
           #ContractMailer.received_email(@contract).deliver # 管理者に通知
           #ContractMailer.send_email(@contract).deliver # 送信者に通知
-        end
-        redirect_to contracts_path, notice: "契約が正常に作成されました。"
-      else
-        flash.now[:alert] = "入力内容にエラーがあります。"
-        render :new
-      end
-    end
+     #   end
+     #   redirect_to contracts_path, notice: "契約が正常に作成されました。"
+     # else
+     #   flash.now[:alert] = "入力内容にエラーがあります。"
+     #   render :new
+     # end
+    #end
     
       def show
         @contract = Contract.find(params[:id])
@@ -98,39 +120,19 @@ class ContractsController < ApplicationController
       private
       def contract_params
         params.require(:contract).permit(
-          :agree, #同意
-          :co, #会社名
-          :president_first,  #代表者姓
-          :president_last,  #代表者名
+          :name, #申込者様姓
           :tel, #電話番号
-          :address, #ご住所住所
+          :address, #住所
           :email, #メールアドレス
-          :url, #会社HP
-          :recruit_url, #採用ページ
-          :recruit_url_2, #採用ページ
-          :work, #採用予定職種
-          :plan, #ご利用プラン選択
-          :number, #採用予定人数
-          :period, #希望採用予定
-          :remarks, #その他要望
-          :person_first,  #採用担当姓
-          :person_last,  #採用担当名
-          :person_tel, #採用担当携帯番号
-          :post_title,
-          :contract_date,
-          :unit_price,
-          :refund, 
-          :payment, #支払日
-          :salary, #給与
-          :employment_conditions, #採用条件
-          :document_screening, #書類選考期間
-          :conversion, #採択率
-          :aim, #取引内容
-          :foreigner, #外国人可否
-          :experience, #何年以上経験
-          :age, #年齢幅
-          :must_be_languages, #必須言語
-          :cc,
+          :fenural, #葬儀の最安値
+          :firty_nine, #四九日の最安値
+          :each_submit, #死亡届の提出
+          :each_cancel, #保険や年金の解約
+          :card_cancel, #銀行口座やカードの解約
+          :hope_contact, #参列者への参加依頼連絡
+          :inheritance, #相続の法的対応
+          :tidying_up, #片付け対応
+          :situation, #ご状況
           :work_id)
       end
   end

@@ -1,100 +1,129 @@
-- set_meta_tags  title: ''
-- set_meta_tags  description: ''
+- set_meta_tags title: ''
+- set_meta_tags description: ''
 
-=  form_for @contract, url: thanks_contracts_path(@contract) do |f|
-  br
-  br
-  .tops-wrapper
-    h2.headline
-      | お問い合わせ確認フォーム
+= form_for @contract, url: thanks_contracts_path(@contract), method: :post do |f|
   table.company.responsive-table
-      colgroup
-        col.col-1
-        col.col-2
-        col.col-3
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 会社名
-        td.responsive-cell
-         .input-container
-         = f.hidden_field :co
-         = @contract.co
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 担当者名
-        td.responsive-cell
-         .input-container
-         = f.hidden_field :person_first
-         = f.hidden_field :person_last
-         = @contract.person_first
-         = @contract.person_last
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 電話番号
-        td.responsive-cell
-         .input-container
+    colgroup
+      col.col-1
+      col.col-2
+      col.col-3
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | お申込者様名
+      td.responsive-cell
+        .input-container
+          = f.hidden_field :name
+          = @contract.name
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 電話番号
+      td.responsive-cell
+        .input-container
           = f.hidden_field :tel
           = @contract.tel
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 所在地
-        td.responsive-cell
-         .input-container
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | 所在地
+      td.responsive-cell
+        .input-container
           = f.hidden_field :address
           = @contract.address
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | メールアドレス
-        td.responsive-cell
-         .input-container
+    tr
+      td.label-cell
+        strong.label 必須
+      td.arrow-box-cell
+        | メールアドレス
+      td.responsive-cell
+        .input-container
           = f.hidden_field :email
           = @contract.email
-      tr
-        td.label-cell
-          strong.label.label-blue 任意
-        td.arrow-box-cell
-          | 採用したい職種
-        td.responsive-cell
-         .input-container
-         = f.hidden_field :work
-         = @contract.work
-      tr
-        td.label-cell
-          strong.label.label-blue 任意
-        td.arrow-box-cell
-          | 採用したい人数
-        td.responsive-cell
-         .input-container
-         = f.hidden_field :number
-         = @contract.number
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 発注予定時期
-        td.responsive-cell
-         .input-container
-          = f.hidden_field :period
-          = @contract.period
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 備考・要望
-        td.responsive-cell
-         .input-container
-          = f.hidden_field :remarks
-          = @contract.remarks
-      tr
-       td colspan="3"
-        = f.submit "送信", class:"btn btn-primary"
+
+  h2.headline
+    | ご依頼希望事項
+  table.company.responsive-table
+    colgroup
+      col.col-1
+      col.col-2
+      col.col-3
+    tr
+      td
+        strong.label 必須
+      td
+        | 葬儀の最安値
+      td
+        = f.hidden_field :fenural
+        = @contract.fenural == "1" ? "希望する" : "希望しない"
+    tr
+      td
+        strong.label 必須
+      td
+        | 四九日の最安値
+      td
+        = f.hidden_field :firty_nine
+        = @contract.firty_nine == "1" ? "希望する" : "希望しない"
+    tr
+      td
+        strong.label 必須
+      td
+        | 死亡届の提出
+      td
+        = f.hidden_field :each_submit
+        = @contract.each_submit == "1" ? "希望する" : "希望しない"
+    tr
+      td
+        strong.label 必須
+      td
+        | 保険や年金の解約
+      td
+        = f.hidden_field :each_cancel
+        = @contract.each_cancel == "1" ? "希望する" : "希望しない"
+    tr
+      td
+        strong.label 必須
+      td
+        | 銀行口座やカードの解約
+      td
+        = f.hidden_field :card_cancel
+        = @contract.card_cancel == "1" ? "希望する" : "希望しない"
+    tr
+      td
+        strong.label 必須
+      td
+        | 参列者への参加依頼連絡
+      td
+        = f.hidden_field :hope_contact
+        = @contract.hope_contact == "1" ? "希望する" : "希望しない"
+    tr
+      td
+        strong.label 必須
+      td
+        | 相続の法的対応
+      td
+        = f.hidden_field :inheritance
+        = @contract.inheritance == "1" ? "希望する" : "希望しない"
+    tr
+      td
+        strong.label 必須
+      td
+        | 片付対応
+      td
+        = f.hidden_field :tidying_up
+        = @contract.tidying_up == "1" ? "希望する" : "希望しない"
+    tr
+      td
+        strong.label 必須
+      td
+        | ご状況
+      td
+        .input-container
+          = f.hidden_field :situation
+          = @contract.situation
+    tr
+      td colspan="3"
+        = f.submit "送信する", class: "btn btn-default"

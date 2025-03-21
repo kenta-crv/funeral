@@ -35,6 +35,10 @@ Rails.application.routes.draw do
         get "info"
         get "conclusion"
       end
+      collection do
+        post :confirm
+        post :thanks
+      end
     end
 
     resources :columns do
