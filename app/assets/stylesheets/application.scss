@@ -153,6 +153,9 @@
     margin-top:-22px;
   }
 
+.between {
+  padding-right:10px;
+}
 
 .pc-image {
   display: none; // PC向けの画像を初めに非表示にします
@@ -1771,7 +1774,7 @@ table.right {margin:5px 50px 5px 0px;}
 
 
 .block-image {
-  width: 80%; // 通常の場合は65%
+  width: 70%; // 通常の場合は65%
 }
 @media only screen and (max-width: 599px) { 
   .block-image {

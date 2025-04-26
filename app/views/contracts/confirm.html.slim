@@ -55,22 +55,6 @@
       td
         strong.label 必須
       td
-        | 葬儀の最安値
-      td
-        = f.hidden_field :fenural
-        = @contract.fenural == "1" ? "希望する" : "希望しない"
-    tr
-      td
-        strong.label 必須
-      td
-        | 四九日の最安値
-      td
-        = f.hidden_field :firty_nine
-        = @contract.firty_nine == "1" ? "希望する" : "希望しない"
-    tr
-      td
-        strong.label 必須
-      td
         | 死亡届の提出
       td
         = f.hidden_field :each_submit
@@ -87,7 +71,7 @@
       td
         strong.label 必須
       td
-        | 銀行口座やカードの解約
+        | クレジットカードの調査・解約
       td
         = f.hidden_field :card_cancel
         = @contract.card_cancel == "1" ? "希望する" : "希望しない"
@@ -95,7 +79,7 @@
       td
         strong.label 必須
       td
-        | 参列者への参加依頼連絡
+        | 銀行口座の調査・解約
       td
         = f.hidden_field :hope_contact
         = @contract.hope_contact == "1" ? "希望する" : "希望しない"
@@ -103,7 +87,7 @@
       td
         strong.label 必須
       td
-        | 相続の法的対応
+        | 相続手続き
       td
         = f.hidden_field :inheritance
         = @contract.inheritance == "1" ? "希望する" : "希望しない"

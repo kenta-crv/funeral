@@ -2,7 +2,7 @@ class TopsController < ApplicationController
     def index
     end
 
-    def freelance 
+    def document
     end
 
     def recruit

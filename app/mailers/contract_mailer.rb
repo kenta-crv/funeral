@@ -3,7 +3,7 @@ class ContractMailer < ActionMailer::Base
   def received_email(contract)
     @contract = contract
     mail to: "info@engist.jp"
-    mail(subject: '『葬儀のミカタ』にお問い合わせがありました') do |format|
+    mail(subject: '『想いの跡』にお問い合わせがありました') do |format|
       format.text
     end
   end
@@ -11,7 +11,7 @@ class ContractMailer < ActionMailer::Base
   def send_email(contract)
     @contract = contract
     mail to: contract.email
-    mail(subject: '『葬儀のミカタ』にお問い合わせ頂きありがとうございます。') do |format|
+    mail(subject: '『想いの跡』にお問い合わせ頂きありがとうございます。') do |format|
       format.text
     end
   end
@@ -19,7 +19,7 @@ class ContractMailer < ActionMailer::Base
   def contract_received_email(contract)
     @contract = contract
     mail to: "info@engist.jp"
-    mail(subject: '『葬儀のミカタ』約款へ同意いただきありがとうございました。') do |format|
+    mail(subject: '『想いの跡』約款へ同意いただきありがとうございました。') do |format|
       format.text
     end
   end
@@ -27,7 +27,7 @@ class ContractMailer < ActionMailer::Base
   def contract_send_email(contract)
     @contract = contract
     mail to: contract.email
-    mail(subject: '『葬儀のミカタ』約款へ同意いただきありがとうございました。') do |format|
+    mail(subject: '『想いの跡』約款へ同意いただきありがとうございました。') do |format|
       format.text
     end
   end

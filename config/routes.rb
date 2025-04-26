@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :admins, only: [:show]
 
     root to: 'tops#index' #トップページ
-    get 'freelance' => 'tops#freelance'
+    get 'document' => 'tops#document'
    #get 'recruit' => 'tops#recruit'
 
     get 'python' => 'tops#python'
